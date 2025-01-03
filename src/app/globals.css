@@ -29,6 +29,9 @@ body {
   font-family: "Consolas";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
 }
 
 * {
