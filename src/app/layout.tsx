@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Montserrat } from "next/font/google";
 import NavBar from "./components/NavBar";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,9 +19,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={montserrat.className}>
       <body
-        style={{ marginLeft: "160px", marginRight: "160px", marginTop: "55px" }}
+        style={{ marginLeft: "90px", marginRight: "90px", marginTop: "55px" }}
       >
         <NavBar />
         {children}

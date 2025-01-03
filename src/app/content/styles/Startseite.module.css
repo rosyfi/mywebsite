@@ -1,0 +1,83 @@
+.container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding-top: 44px;
+}
+
+.containerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.containerRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.slogan {
+  font-weight: bold;
+  font-size: 120px;
+  line-height: 110px;
+  text-transform: uppercase;
+  color: rgb(5, 5, 5, 83%);
+}
+
+.description {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: popUp 0.6s ease-in-out 7.5s forwards;
+}
+
+.button {
+  width: 350px;
+  height: 80px;
+  background: #92cce3;
+  border: 1px solid black;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-weight: 100px !important;
+}
+
+.buttonContainer {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.animatedSvg {
+  animation: moveUpDown 500ms ease-in-out infinite;
+}
+
+.mailContainer {
+  display: flex;
+}
+
+.seeMoreContainer {
+  display: flex;
+}
+
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes popUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
