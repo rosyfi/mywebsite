@@ -1,0 +1,26 @@
+.navBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menuItems {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  gap: 40px;
+  font-size: 30px;
+  text-underline-offset: 10px;
+}
+
+.menuItems .active {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.menuItems li:hover,
+.menuItems li:active {
+  text-decoration: underline;
+  font-weight: bold;
+}

@@ -1,0 +1,33 @@
+.toggleSwitch {
+  width: 82px;
+  height: 47px;
+  border: 1px solid black;
+  border-radius: 100px;
+  background-color: #2d7490;
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggleSwitch.off {
+  background-color: #92cce3;
+}
+
+.toggleKnob {
+  width: 35px;
+  height: 35px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.toggleSwitch.off .toggleKnob {
+  transform: translateX(0px);
+}
+
+.toggleSwitch.on .toggleKnob {
+  transform: translateX(33px);
+}
