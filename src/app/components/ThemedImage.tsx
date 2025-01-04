@@ -13,13 +13,13 @@ const ThemedImage: React.FC<ThemedImageProp> = ({ name, width, height }) => {
 
   switch (resolvedTheme) {
     case "light":
-      src = `/light/${name}.svg`;
+      src = "/light/" + `${name}.svg`;
       break;
     case "dark":
-      src = `/dark/${name}.svg`;
+      src = "/dark/" + `${name}.svg`;
       break;
     default:
-      src = `/light/${name}.svg`;
+      src = "/light/" + `${name}.svg`;
       break;
   }
 

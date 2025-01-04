@@ -1,23 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./styles/Startseite.module.css";
 import TypeIt from "typeit";
 import ThemedImage from "../components/ThemedImage";
 
 const Startseite = () => {
-  const [emailBody, setEmailBody] = useState<string>("");
+  const email = "filocomo.career@gmail.com";
 
   const openEmail = () => {
-    const recipient = "filocomo.career@gmail.com";
-    const subject = "Joyn us!";
-    const body = encodeURIComponent(emailBody);
-
-    const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(
-      subject
-    )}&body=${body}`;
-
-    window.open(mailtoUrl);
+    const mailtoLink = `mailto:${email}`;
+    window.location.href = mailtoLink;
   };
 
   useEffect(() => {
