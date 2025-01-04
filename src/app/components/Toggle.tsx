@@ -1,19 +1,34 @@
-import React, { useState } from "react";
-import styles from "../styles/Toggle.module.css";
+import { useState, useEffect } from "react";
+import { useTheme } from "next-themes";
+import styles from "./styles/Toggle.module.css";
 
 const Toggle = () => {
-  const [isOn, setIsOn] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [isOn, setIsOn] = useState(theme === "dark");
 
-  const handleToggle = () => {
-    setIsOn((prev) => !prev);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
+  const toggleTheme = () => {
+    const newTheme = isOn ? "light" : "dark";
+    setTheme(newTheme);
+    setIsOn(!isOn);
   };
 
   return (
     <div
       className={`${styles.toggleSwitch} ${isOn ? styles.on : styles.off}`}
-      onClick={handleToggle}
+      onClick={toggleTheme}
     >
-      <div className={styles.toggleKnob} />
+      <div
+        className={`${styles.toggleKnob} ${isOn ? styles.on : styles.off}`}
+      />
     </div>
   );
 };

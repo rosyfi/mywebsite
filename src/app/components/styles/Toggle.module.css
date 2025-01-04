@@ -3,12 +3,16 @@
   height: 47px;
   border: 1px solid black;
   border-radius: 100px;
-  background-color: #2d7490;
   display: flex;
   align-items: center;
   padding: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+}
+
+.toggleSwitch.on {
+  background-color: #2d7490;
+  border: 1px solid white;
 }
 
 .toggleSwitch.off {
@@ -18,10 +22,18 @@
 .toggleKnob {
   width: 35px;
   height: 35px;
-  background-color: white;
   border: 1px solid black;
   border-radius: 50%;
   transition: transform 0.3s ease;
+}
+
+.toggleKnob.off {
+  background-color: white;
+}
+
+.toggleKnob.on {
+  background-color: #274856;
+  border: 1px solid white;
 }
 
 .toggleSwitch.off .toggleKnob {

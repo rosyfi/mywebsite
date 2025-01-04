@@ -1,12 +1,26 @@
 "use client";
-import React, { useEffect } from "react";
-import Image from "next/image";
+
+import React, { useEffect, useState } from "react";
 import styles from "./styles/Startseite.module.css";
 import TypeIt from "typeit";
+import ThemedImage from "../components/ThemedImage";
 
 const Startseite = () => {
+  const [emailBody, setEmailBody] = useState<string>("");
+
+  const openEmail = () => {
+    const recipient = "filocomo.career@gmail.com";
+    const subject = "Joyn us!";
+    const body = encodeURIComponent(emailBody);
+
+    const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(
+      subject
+    )}&body=${body}`;
+
+    window.open(mailtoUrl);
+  };
+
   useEffect(() => {
-    // Only initialize TypeIt when the element is rendered
     const element = document.getElementById("simpleUsage");
     if (element) {
       new TypeIt(element, {
@@ -25,7 +39,7 @@ const Startseite = () => {
         .type("Reality&lt;/&gt;")
         .go();
     }
-  }, []); // Empty dependency array ensures this runs once when the component mounts
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -40,27 +54,19 @@ const Startseite = () => {
       </section>
       {/* Right Section */}
       <section className={styles.containerRight}>
-        <Image src="/girl.svg" alt="girl" width={"750"} height={"500"} />
+        <ThemedImage name="girl" width={750} height={500} />
         <div className={styles.buttonContainer}>
-          <button className={styles.button}>Lets get connected</button>
+          <button className={styles.button} onClick={openEmail}>
+            Lets get connected
+          </button>
           <div className={styles.mailContainer}>
-            <Image
-              src="/mailLine.svg"
-              alt="mailLine"
-              width={"130"}
-              height={"117"}
-            />
-            <Image
-              className={styles.animatedSvg}
-              src="/mail.svg"
-              alt="mail"
-              width={"59"}
-              height={"51"}
-            />
+            <ThemedImage name="mailLine" width={130} height={117} />
+            <div className={styles.animatedSvg}>
+              <ThemedImage name="mail" width={59} height={51} />
+            </div>
           </div>
         </div>
       </section>
-      TODO:
       {/* <div className={styles.seeMoreContainer}>
         <span>See more</span>
         <Image

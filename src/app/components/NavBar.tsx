@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import styles from "../styles/NavBar.module.css";
+import styles from "./styles/NavBar.module.css";
 import Toggle from "./Toggle";
+import ThemedImage from "./ThemedImage";
 
 const NavBar = () => {
   const [activeItem, setActiveItem] = useState("home");
@@ -15,7 +15,7 @@ const NavBar = () => {
 
   return (
     <nav className={`${styles.navBar}`}>
-      <Image src="/logo.svg" alt="logo" width={"189"} height={"33"} />
+      <ThemedImage name="logo" width={189} height={33} />
 
       <ul className={styles.menuItems}>
         <li className={`${activeItem === "home" ? styles.active : ""}`}>

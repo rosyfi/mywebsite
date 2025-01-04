@@ -25,6 +25,7 @@
 }
 
 .description {
+  padding-inline: 60px;
   text-align: center;
   opacity: 0;
   transform: translateY(20px);
@@ -38,7 +39,7 @@
   border: 1px solid black;
   border-radius: 10px;
   text-transform: uppercase;
-  font-weight: 100px !important;
+  cursor: pointer;
 }
 
 .buttonContainer {
