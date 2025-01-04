@@ -82,3 +82,40 @@
     transform: translateY(0);
   }
 }
+
+/* Responsive Design for Mobile (480px and Below) */
+@media (max-width: 480px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .containerLeft {
+    align-items: center;
+    gap: 10px;
+  }
+
+  .containerRight {
+    align-items: center;
+    gap: 42px;
+  }
+
+  .buttonContainer {
+    gap: 10px;
+  }
+  .slogan {
+    font-size: 62px;
+    line-height: 50px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .button {
+    width: 228px;
+    height: 44px;
+    font-size: 16px;
+  }
+}

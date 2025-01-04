@@ -21,9 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={montserrat.className} suppressHydrationWarning>
-      <body
-        style={{ marginLeft: "120px", marginRight: "120px", marginTop: "55px" }}
-      >
+      <body className="pageContainer">
         <ThemeProvider enableSystem={false}>
           <NavBar />
           {children}
