@@ -72,3 +72,21 @@ h1 {
 span {
   font-size: 24px;
 }
+
+.pageContainer {
+  margin-left: 120px;
+  margin-right: 120px;
+  margin-top: 55px;
+}
+
+@media (max-width: 480px) {
+  .pageContainer {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+  }
+
+  body {
+    background: none;
+  }
+}
