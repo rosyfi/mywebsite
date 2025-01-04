@@ -13,39 +13,29 @@
 .containerRight {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
+  gap: 37px;
 }
 
 .slogan {
   font-weight: bold;
-  font-size: 120px;
-  line-height: 110px;
+  font-size: 7vw;
+  line-height: 7vw;
   text-transform: uppercase;
   color: rgb(5, 5, 5, 83%);
 }
 
 .description {
-  padding-inline: 60px;
+  padding-inline: 2vw;
   text-align: center;
   opacity: 0;
   transform: translateY(20px);
   animation: popUp 0.6s ease-in-out 7.5s forwards;
 }
 
-.button {
-  width: 350px;
-  height: 80px;
-  background: #92cce3;
-  border: 1px solid black;
-  border-radius: 10px;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
 .buttonContainer {
   display: flex;
-  align-items: flex-end;
-  gap: 20px;
+  align-items: center;
 }
 
 .animatedSvg {
@@ -80,5 +70,32 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Responsive Design for Mobile (480px and Below) */
+@media (max-width: 1024px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .containerLeft {
+    align-items: center;
+    gap: 0px;
+  }
+
+  .containerRight {
+    align-items: center;
+  }
+
+  .slogan {
+    min-height: 177px;
+    font-size: 13vw;
+    line-height: 11vw;
+  }
+
+  .description {
+    font-size: 4.5vw;
   }
 }

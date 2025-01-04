@@ -4,10 +4,16 @@ import React, { useState } from "react";
 import Link from "next/link";
 import styles from "./styles/NavBar.module.css";
 import Toggle from "./Toggle";
-import ThemedImage from "./ThemedImage";
+import useIsMobile from "./useIsMobile";
 
 const NavBar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const isMobile = useIsMobile(1024);
   const [activeItem, setActiveItem] = useState("home");
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   const handleClick = (item: string): void => {
     setActiveItem(item);
@@ -15,9 +21,18 @@ const NavBar = () => {
 
   return (
     <nav className={`${styles.navBar}`}>
-      <ThemedImage name="logo" width={189} height={33} />
-
-      <ul className={styles.menuItems}>
+      <h1>rossella.</h1>
+      {isMobile && (
+        <div className={styles.hamburger} onClick={toggleMenu}>
+          <div className={styles.bar}></div>
+          <div className={styles.bar}></div>
+        </div>
+      )}
+      <ul
+        className={`${styles.menuItems} ${
+          menuOpen && isMobile ? styles.active : ""
+        }`}
+      >
         <li className={`${activeItem === "home" ? styles.active : ""}`}>
           <Link
             onClick={(e) => {
@@ -62,8 +77,17 @@ const NavBar = () => {
             linkedin
           </Link>
         </li>
+
+        {/* Render Toggle inside the menu for mobile */}
+        {isMobile && (
+          <li className={styles.toggleItem}>
+            <Toggle />
+          </li>
+        )}
       </ul>
-      <Toggle />
+
+      {/* Render Toggle outside the menu for larger screens */}
+      {!isMobile && <Toggle />}
     </nav>
   );
 };

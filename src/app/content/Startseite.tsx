@@ -1,23 +1,18 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styles from "./styles/Startseite.module.css";
 import TypeIt from "typeit";
 import ThemedImage from "../components/ThemedImage";
+import useIsMobile from "../components/useIsMobile";
 
 const Startseite = () => {
-  const [emailBody, setEmailBody] = useState<string>("");
+  const email = "filocomo.career@gmail.com";
+  const isMobile = useIsMobile(480);
 
   const openEmail = () => {
-    const recipient = "filocomo.career@gmail.com";
-    const subject = "Joyn us!";
-    const body = encodeURIComponent(emailBody);
-
-    const mailtoUrl = `mailto:${recipient}?subject=${encodeURIComponent(
-      subject
-    )}&body=${body}`;
-
-    window.open(mailtoUrl);
+    const mailtoLink = `mailto:${email}`;
+    window.location.href = mailtoLink;
   };
 
   useEffect(() => {
@@ -26,6 +21,7 @@ const Startseite = () => {
       new TypeIt(element, {
         speed: 150,
         waitUntilVisible: true,
+        cursor: false,
       })
         .type("&lt;&gt;Turning", { delay: 300 })
         .break({ delay: 500 })
@@ -43,30 +39,59 @@ const Startseite = () => {
 
   return (
     <div className={styles.container}>
-      {/* Left Section */}
-      <section className={styles.containerLeft}>
-        <h1 id="simpleUsage" className={styles.slogan}></h1>
-        <p className={styles.description}>
-          We bring creativity and precision to every project, delivering
-          exceptional frontend solutions. From wireframes to fully functional
-          applications, every detail is crafted to align with your vision.
-        </p>
-      </section>
-      {/* Right Section */}
-      <section className={styles.containerRight}>
-        <ThemedImage name="girl" width={750} height={500} />
-        <div className={styles.buttonContainer}>
-          <button className={styles.button} onClick={openEmail}>
-            Lets get connected
-          </button>
-          <div className={styles.mailContainer}>
-            <ThemedImage name="mailLine" width={130} height={117} />
-            <div className={styles.animatedSvg}>
-              <ThemedImage name="mail" width={59} height={51} />
+      {isMobile ? (
+        <>
+          <section className={styles.containerLeft}>
+            <h1 id="simpleUsage" className={styles.slogan}></h1>
+            <ThemedImage name="girl" width={400} height={400} />
+          </section>
+          <section className={styles.containerRight}>
+            <p className={styles.description}>
+              We bring creativity and precision to every project, delivering
+              exceptional frontend solutions. From wireframes to fully
+              functional applications, every detail is crafted to align with
+              your vision.
+            </p>
+            <div className={styles.buttonContainer}>
+              <button className={styles.button} onClick={openEmail}>
+                Lets get connected
+              </button>
+              <div className={styles.mailContainer}>
+                <ThemedImage name="mailLine" width={70} height={50} />
+                <div className={styles.animatedSvg}>
+                  <ThemedImage name="mail" width={35} height={23} />
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
+        </>
+      ) : (
+        <>
+          <section className={styles.containerLeft}>
+            <h1 id="simpleUsage" className={styles.slogan}></h1>
+            <p className={styles.description}>
+              We bring creativity and precision to every project, delivering
+              exceptional frontend solutions. From wireframes to fully
+              functional applications, every detail is crafted to align with
+              your vision.
+            </p>
+          </section>
+          <section className={styles.containerRight}>
+            <ThemedImage name="girl" width={750} height={500} />
+            <div className={styles.buttonContainer}>
+              <button className={styles.button} onClick={openEmail}>
+                Lets get connected
+              </button>
+              <div className={styles.mailContainer}>
+                <ThemedImage name="mailLine" width={130} height={117} />
+                <div className={styles.animatedSvg}>
+                  <ThemedImage name="mail" width={59} height={51} />
+                </div>
+              </div>
+            </div>
+          </section>
+        </>
+      )}
       {/* <div className={styles.seeMoreContainer}>
         <span>See more</span>
         <Image
