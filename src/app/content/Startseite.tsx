@@ -21,6 +21,7 @@ const Startseite = () => {
       new TypeIt(element, {
         speed: 150,
         waitUntilVisible: true,
+        cursor: false,
       })
         .type("&lt;&gt;Turning", { delay: 300 })
         .break({ delay: 500 })
