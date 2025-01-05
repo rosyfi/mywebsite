@@ -4,12 +4,11 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./styles/NavBar.module.css";
 import Toggle from "./Toggle";
-import ThemedImage from "./ThemedImage";
 import useIsMobile from "./useIsMobile";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const isMobile = useIsMobile(480);
+  const isMobile = useIsMobile(1024);
   const [activeItem, setActiveItem] = useState("home");
 
   const toggleMenu = () => {
@@ -22,7 +21,7 @@ const NavBar = () => {
 
   return (
     <nav className={`${styles.navBar}`}>
-      <ThemedImage name="logo" width={189} height={33} />
+      <h1>rossella.</h1>
       {isMobile && (
         <div className={styles.hamburger} onClick={toggleMenu}>
           <div className={styles.bar}></div>

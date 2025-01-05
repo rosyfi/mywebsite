@@ -33,15 +33,14 @@
 }
 
 .hamburger .bar {
-  width: 20px;
-  height: 6px;
+  width: 25px;
+  height: 10px;
   background: #92cce3;
   border: 1.25px solid #000000;
   border-radius: 2px;
 }
 
-/* Media Query for Mobile Screens */
-@media (max-width: 480px) {
+@media (max-width: 1024px) {
   .menuItems {
     display: none;
     flex-direction: column;

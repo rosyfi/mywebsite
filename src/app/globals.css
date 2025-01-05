@@ -16,6 +16,12 @@
   border-color: #d5e2e8;
 }
 
+[data-theme="dark"] button:hover {
+  background-color: #c0d4dc;
+  border-color: black;
+  color: black;
+}
+
 @font-face {
   font-family: "Consolas";
   src: url("../../public/fonts/Consolas.ttf") format("ttf");
@@ -62,6 +68,17 @@ a {
 button {
   font-size: 22px;
   font-family: "Montserrat", thin;
+  padding: 1.5vw;
+  background: #92cce3;
+  border: 1px solid black;
+  border-radius: 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #32afe1;
+  border: 2px solid black;
 }
 
 nav,
@@ -74,19 +91,22 @@ span {
 }
 
 .pageContainer {
-  margin-left: 120px;
-  margin-right: 120px;
-  margin-top: 55px;
+  padding-inline: 120px;
+  margin-top: 40px;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 1024) {
   .pageContainer {
-    margin-left: 20px;
-    margin-right: 20px;
+    padding-inline: 20px;
     margin-top: 10px;
   }
 
   body {
-    background: none;
+    background-image: none;
+  }
+
+  .button {
+    padding: 4vw;
+    font-size: 16px;
   }
 }

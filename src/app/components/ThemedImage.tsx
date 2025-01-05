@@ -23,7 +23,15 @@ const ThemedImage: React.FC<ThemedImageProp> = ({ name, width, height }) => {
       break;
   }
 
-  return <Image src={src} alt={name} width={width} height={height} />;
+  return (
+    <Image
+      style={{ maxWidth: "100%" }}
+      src={src}
+      alt={name}
+      width={width}
+      height={height}
+    />
+  );
 };
 
 export default ThemedImage;
