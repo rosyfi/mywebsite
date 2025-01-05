@@ -95,7 +95,7 @@ span {
   margin-top: 40px;
 }
 
-@media (max-width: 1024) {
+@media (max-width: 1024px) {
   .pageContainer {
     padding-inline: 20px;
     margin-top: 10px;
