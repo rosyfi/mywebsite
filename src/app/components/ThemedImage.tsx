@@ -25,7 +25,7 @@ const ThemedImage: React.FC<ThemedImageProp> = ({ name, width, height }) => {
 
   return (
     <Image
-      style={{ maxWidth: "100%" }}
+      style={{ maxWidth: "100%", height: "fit-content" }}
       src={src}
       alt={name}
       width={width}

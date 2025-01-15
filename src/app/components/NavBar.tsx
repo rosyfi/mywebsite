@@ -19,6 +19,14 @@ const NavBar = () => {
     setActiveItem(item);
   };
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    setActiveItem(sectionId);
+  };
+
   return (
     <nav className={`${styles.navBar}`}>
       <h1>rossella.</h1>
@@ -37,7 +45,7 @@ const NavBar = () => {
           <Link
             onClick={(e) => {
               e.preventDefault();
-              handleClick("home");
+              scrollToSection("home");
             }}
             href="/home"
           >
@@ -48,18 +56,29 @@ const NavBar = () => {
           <Link
             onClick={(e) => {
               e.preventDefault();
-              handleClick("about");
+              scrollToSection("about");
             }}
             href="/about"
           >
             about
           </Link>
         </li>
+        <li className={`${activeItem === "work" ? styles.active : ""}`}>
+          <Link
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("work");
+            }}
+            href="/work"
+          >
+            work
+          </Link>
+        </li>
         <li className={`${activeItem === "contact" ? styles.active : ""}`}>
           <Link
             onClick={(e) => {
               e.preventDefault();
-              handleClick("contact");
+              scrollToSection("contact");
             }}
             href="/contact"
           >
@@ -68,11 +87,8 @@ const NavBar = () => {
         </li>
         <li className={`${activeItem === "linkedin" ? styles.active : ""}`}>
           <Link
-            onClick={(e) => {
-              e.preventDefault();
-              handleClick("linkedin");
-            }}
-            href="/linkedin"
+            href="https://www.linkedin.com/in/rossellafilocomo/"
+            target="_blank"
           >
             linkedin
           </Link>

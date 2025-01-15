@@ -29,19 +29,12 @@
   font-style: normal;
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-  height: 100vh;
-}
-
 body {
   color: var(--foreground);
   background: var(--background);
-  background-image: url("/background.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  /* background-image: url("/background.svg"); */
+  /* background-repeat: no-repeat;
+  background-size: cover; */
 
   font-family: "Montserrat", sans-serif;
   font-size: 25px;
@@ -50,7 +43,6 @@ body {
 
   display: grid;
   grid-template-rows: auto 1fr auto;
-  gap: 30px;
   height: 100vh;
 }
 
@@ -58,6 +50,10 @@ body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+h1 {
+  color: rgb(5, 5, 5, 83%);
 }
 
 a {
@@ -90,21 +86,7 @@ span {
   font-size: 24px;
 }
 
-.pageContainer {
-  padding-inline: 120px;
-  margin-top: 40px;
-}
-
 @media (max-width: 1024px) {
-  .pageContainer {
-    padding-inline: 20px;
-    margin-top: 10px;
-  }
-
-  body {
-    background-image: none;
-  }
-
   .button {
     padding: 4vw;
     font-size: 16px;

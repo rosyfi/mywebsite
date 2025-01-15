@@ -1,12 +1,25 @@
+[data-theme="dark"] .hamburger .bar {
+  background: #2d7490;
+  border: 1.25px solid #d5e2e8;
+}
+
+[data-theme="dark"] .menuItems {
+  background: #274856;
+}
+
 .navBar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
+  padding: 50px;
 }
 
 .menuItems {
   display: flex;
+  align-items: center;
   flex-direction: row;
   list-style: none;
   gap: 40px;
@@ -41,6 +54,10 @@
 }
 
 @media (max-width: 1024px) {
+  .navBar {
+    padding: 30px;
+  }
+
   .menuItems {
     display: none;
     flex-direction: column;

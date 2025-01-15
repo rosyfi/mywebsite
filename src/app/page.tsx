@@ -1,13 +1,12 @@
 import styles from "./page.module.css";
-import Startseite from "./content/Startseite";
+import Home from "./content/Home";
+import About from "./content/About";
 
-export default function Home() {
+export default function App() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Startseite />
-      </main>
-      <footer className={styles.footer}></footer>
-    </div>
+    <main className={styles.container}>
+      <Home />
+      <About />
+    </main>
   );
 }

@@ -1,33 +1,35 @@
 .container {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  padding-top: 44px;
+  display: flex;
+  padding-inline: 50px;
+  padding-bottom: 50px;
 }
 
 .containerLeft {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 35px;
 }
 
 .containerRight {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 37px;
+  gap: 35px;
 }
 
-.slogan {
+.container h1 {
   font-weight: bold;
   font-size: 7vw;
-  line-height: 7vw;
+  line-height: 6vw;
   text-transform: uppercase;
-  color: rgb(5, 5, 5, 83%);
 }
 
-.description {
+.container p {
   padding-inline: 2vw;
   text-align: center;
+  line-height: 4vh;
   opacity: 0;
   transform: translateY(20px);
   animation: popUp 0.6s ease-in-out 7.5s forwards;
@@ -46,9 +48,13 @@
   display: flex;
 }
 
-.seeMoreContainer {
+/* .seeMoreContainer {
   display: flex;
-}
+  align-items: center;
+  justify-content: center;
+  grid-column: 1 / -1;
+  gap: 10px;
+} */
 
 @keyframes moveUpDown {
   0% {
@@ -73,11 +79,13 @@
   }
 }
 
-/* Responsive Design for Mobile (480px and Below) */
 @media (max-width: 1024px) {
   .container {
     display: flex;
     flex-direction: column;
+    gap: 15px;
+    padding-inline: 30px;
+    padding-bottom: 30px;
   }
 
   .containerLeft {
@@ -89,13 +97,14 @@
     align-items: center;
   }
 
-  .slogan {
+  .container h1 {
     min-height: 177px;
     font-size: 13vw;
     line-height: 11vw;
   }
 
-  .description {
-    font-size: 4.5vw;
+  .container p {
+    font-size: 4vw;
+    line-height: 5vw;
   }
 }
