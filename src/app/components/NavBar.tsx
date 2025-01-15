@@ -15,10 +15,6 @@ const NavBar = () => {
     setMenuOpen(!menuOpen);
   };
 
-  const handleClick = (item: string): void => {
-    setActiveItem(item);
-  };
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
