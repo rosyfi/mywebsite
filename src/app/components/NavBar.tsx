@@ -15,10 +15,6 @@ const NavBar = () => {
     setMenuOpen(!menuOpen);
   };
 
-  const handleClick = (item: string): void => {
-    setActiveItem(item);
-  };
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -29,7 +25,7 @@ const NavBar = () => {
 
   return (
     <nav className={`${styles.navBar}`}>
-      <h1>rossella.</h1>
+      <span className={styles.logo}>rossella.</span>
       {isMobile && (
         <div className={styles.hamburger} onClick={toggleMenu}>
           <div className={styles.bar}></div>
@@ -63,15 +59,15 @@ const NavBar = () => {
             about
           </Link>
         </li>
-        <li className={`${activeItem === "work" ? styles.active : ""}`}>
+        <li className={`${activeItem === "projects" ? styles.active : ""}`}>
           <Link
             onClick={(e) => {
               e.preventDefault();
-              scrollToSection("work");
+              scrollToSection("projects");
             }}
-            href="/work"
+            href="/projects"
           >
-            work
+            projects
           </Link>
         </li>
         <li className={`${activeItem === "contact" ? styles.active : ""}`}>
@@ -85,12 +81,12 @@ const NavBar = () => {
             contact
           </Link>
         </li>
-        <li className={`${activeItem === "linkedin" ? styles.active : ""}`}>
+        <li>
           <Link
             href="https://www.linkedin.com/in/rossellafilocomo/"
             target="_blank"
           >
-            linkedin
+            linked
           </Link>
         </li>
 

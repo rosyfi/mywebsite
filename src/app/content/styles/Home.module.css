@@ -1,41 +1,52 @@
 .container {
   display: flex;
-  padding-inline: 50px;
-  padding-bottom: 50px;
+  align-items: flex-start;
+  padding: 40px 160px 60px;
+  background: var(--section-bg);
+  border-bottom: 1px solid var(--border);
+  min-height: 600px;
 }
 
 .containerLeft {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 35px;
+  gap: 32px;
+  padding-top: 24px;
 }
 
 .containerRight {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 35px;
+  align-items: flex-end;
+  gap: 24px;
 }
 
 .container h1 {
+  font-family: "Consolas", "Consola", monospace;
   font-weight: bold;
-  font-size: 7vw;
-  line-height: 6vw;
+  font-size: 6vw;
+  line-height: 0.9;
   text-transform: uppercase;
+  color: var(--text);
+  min-height: 200px;
 }
 
 .container p {
-  padding-inline: 2vw;
-  text-align: center;
-  line-height: 4vh;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: popUp 0.6s ease-in-out 7.5s forwards;
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 560px;
+  color: var(--text);
 }
 
-.buttonContainer {
+.buttonRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mailContainer {
   display: flex;
   align-items: center;
 }
@@ -43,18 +54,6 @@
 .animatedSvg {
   animation: moveUpDown 500ms ease-in-out infinite;
 }
-
-.mailContainer {
-  display: flex;
-}
-
-/* .seeMoreContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  grid-column: 1 / -1;
-  gap: 10px;
-} */
 
 @keyframes moveUpDown {
   0% {
@@ -81,30 +80,30 @@
 
 @media (max-width: 1024px) {
   .container {
-    display: flex;
     flex-direction: column;
-    gap: 15px;
-    padding-inline: 30px;
-    padding-bottom: 30px;
+    padding: 30px;
+    gap: 24px;
+    min-height: unset;
   }
 
   .containerLeft {
-    align-items: center;
-    gap: 0px;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
   }
 
   .containerRight {
-    align-items: center;
+    display: none;
   }
 
   .container h1 {
-    min-height: 177px;
-    font-size: 13vw;
-    line-height: 11vw;
+    font-size: 14vw;
+    line-height: 0.85;
+    min-height: unset;
   }
 
   .container p {
-    font-size: 4vw;
-    line-height: 5vw;
+    font-size: 16px;
+    max-width: 100%;
   }
 }
