@@ -34,11 +34,13 @@ jobs:
 
       - name: Write Next.js configuration
         run: |
+          rm -f next.config.ts next.config.js
           echo '/** @type {import("next").NextConfig} */' > next.config.mjs
           echo 'const nextConfig = {' >> next.config.mjs
           echo '    output: "export",' >> next.config.mjs
           echo '    basePath: "/mywebsite",' >> next.config.mjs
           echo '    assetPrefix: "/mywebsite/",' >> next.config.mjs
+          echo '    images: { unoptimized: true },' >> next.config.mjs
           echo '};' >> next.config.mjs
           echo '' >> next.config.mjs
           echo 'export default nextConfig;' >> next.config.mjs
