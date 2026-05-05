@@ -1,10 +1,11 @@
 [data-theme="dark"] .hamburger .bar {
-  background: #2d7490;
+  background: #2a2635;
   border: 1.25px solid #d5e2e8;
 }
 
 [data-theme="dark"] .menuItems {
-  background: #274856;
+  background: #1e1e24;
+  border-color: #d5e2e8;
 }
 
 .navBar {
@@ -14,7 +15,17 @@
   align-items: center;
   position: sticky;
   top: 0;
-  padding: 50px;
+  padding: 24px 160px;
+  background: var(--background);
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: "Consolas", "Consola", monospace;
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--text);
 }
 
 .menuItems {
@@ -23,56 +34,58 @@
   flex-direction: row;
   list-style: none;
   gap: 40px;
-  font-size: 30px;
-  text-underline-offset: 10px;
+  font-size: 18px;
+  font-family: "Montserrat", sans-serif;
+  text-underline-offset: 8px;
 }
 
 .menuItems .active {
   text-decoration: underline;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .menuItems li:hover,
 .menuItems li:active {
   text-decoration: underline;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .hamburger {
   display: none;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
   cursor: pointer;
 }
 
 .hamburger .bar {
-  width: 25px;
-  height: 10px;
-  background: #92cce3;
-  border: 1.25px solid #000000;
+  width: 28px;
+  height: 3px;
+  background: var(--text);
   border-radius: 2px;
 }
 
 @media (max-width: 1024px) {
   .navBar {
-    padding: 30px;
+    padding: 20px 30px;
   }
 
   .menuItems {
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 60px;
+    top: 68px;
     right: 20px;
-    background-color: white;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    background: var(--background);
+    padding: 16px 24px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    z-index: 200;
+    gap: 16px;
   }
 
   .menuItems.active {
     display: flex;
-    font-size: 24px;
+    font-size: 18px;
   }
 
   .hamburger {

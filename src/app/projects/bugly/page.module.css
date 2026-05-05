@@ -1,0 +1,840 @@
+/* ── Shared ───────────────────────────────────────── */
+
+.sectionLabel {
+  font-family: "Consolas", "Consola", monospace;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.infoLabel {
+  font-family: "Consolas", "Consola", monospace;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.bulletList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bulletList li::before {
+  content: "· ";
+}
+
+.ctaRow {
+  display: flex;
+  justify-content: center;
+}
+
+.ctaBtn {
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  padding: 19px 26px;
+  background: var(--accent-pink);
+  border: 1px solid black;
+  border-radius: 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  display: inline-block;
+  color: var(--text);
+  transition: background 0.2s;
+}
+
+.ctaBtn:hover {
+  background: #e58f89;
+}
+
+/* ── 1. Hero ─────────────────────────────────────── */
+
+.hero {
+  background: white;
+  display: flex;
+  justify-content: center;
+}
+
+.heroImageWrap {
+  position: relative;
+  width: 100%;
+  height: 686px;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* ── 2. Project Info ─────────────────────────────── */
+
+.info {
+  background: #ece9e5;
+  padding: 72px 160px;
+}
+
+.infoGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  margin-bottom: 48px;
+}
+
+.infoRow {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 40px;
+  align-items: start;
+  padding-bottom: 36px;
+  border-bottom: 1px solid var(--border);
+}
+
+.infoRow:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* ── 3. The Problem & The Goal ───────────────────────────── */
+
+.problemAndGoal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 380px;
+}
+
+.problemLeft {
+  background: var(--accent-olive);
+  padding: 80px 80px 80px 160px;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.problemLeft .sectionLabel {
+  color: var(--text);
+}
+
+.goalRight {
+  background: #f9f8f7;
+  padding: 80px 80px 80px 160px;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.imagePlaceholder {
+  width: 280px;
+  height: 220px;
+  background: white;
+  border-radius: 16px;
+}
+
+/* ── 4. User Research ────────────────────────────── */
+
+.research {
+  background: #ede9e3;
+  padding: 80px 160px;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.researchLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.painCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  height: 100%;
+}
+
+.painCard {
+  background: white;
+  border-radius: 16px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.painCard h3 {
+  font-family: "Consolas", "Consola", monospace;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ── 5. Quote ────────────────────────────────────── */
+
+.quoteSection {
+  background: var(--accent-pink);
+  padding: 72px 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quoteText {
+  font-size: 20px;
+  font-style: italic;
+  text-align: center;
+  max-width: 780px;
+  line-height: 1.7;
+  border: none;
+  quotes: none;
+}
+
+/* ── 6. Persona ──────────────────────────────────── */
+
+.persona {
+  background: var(--background);
+  padding: 80px 160px;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.personaCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.personaAvatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.personaName {
+  font-family: "Consolas", "Consola", monospace;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.personaMeta {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.personaMeta tr {
+  border-bottom: 1px solid var(--border);
+}
+
+.personaMeta td {
+  padding: 10px 4px;
+  font-size: 14px;
+}
+
+.metaKey {
+  font-family: "Consolas", "Consola", monospace;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  width: 110px;
+  vertical-align: middle;
+}
+
+.personaDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.personaQuoteWrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.quoteIconOpen {
+  font-size: 60px;
+  font-family: Georgia, serif;
+  color: var(--accent-pink);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.quoteIconClose {
+  font-size: 60px;
+  font-family: Georgia, serif;
+  color: var(--accent-pink);
+  line-height: 1;
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+
+.personaQuoteText {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.35;
+  padding-top: 8px;
+}
+
+.personaSection {
+  font-family: "Consolas", "Consola", monospace;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.goalsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 8px;
+}
+
+.goalsHeading {
+  font-family: "Consolas", "Consola", monospace;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.goalsList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.goalsList li::before {
+  content: "· ";
+  color: var(--accent-pink);
+}
+
+/* ── 7. User Journey Map ─────────────────────────── */
+
+.journeySection {
+  background: var(--section-bg);
+  padding: 80px 0 80px 160px;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 60px;
+  align-items: center;
+  overflow: hidden;
+}
+
+.journeyMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 14px;
+  padding-right: 20px;
+}
+
+.journeyMeta .sectionLabel {
+  margin-bottom: 4px;
+}
+
+.journeyScroll {
+  overflow-x: auto;
+  cursor: grab;
+  user-select: none;
+  scrollbar-width: none;
+  padding-right: 160px;
+}
+
+.journeyScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.journeyTable {
+  border-collapse: collapse;
+  min-width: 900px;
+  font-size: 13px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.journeyTable th,
+.journeyTable td {
+  padding: 14px 16px;
+  vertical-align: top;
+  min-width: 160px;
+  max-width: 200px;
+  border: 1px solid #e0ddd8;
+}
+
+.jAction {
+  background: #1e1e2c;
+  color: white;
+  font-family: "Consolas", "Consola", monospace;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  min-width: 120px !important;
+  max-width: 120px !important;
+  text-align: center;
+}
+
+.jHeader {
+  background: #f4d166;
+  font-family: "Consolas", "Consola", monospace;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.jRowLabel {
+  background: #1e1e2c;
+  color: white;
+  font-family: "Consolas", "Consola", monospace;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.jTask {
+  background: #d4e5f7;
+  line-height: 1.6;
+}
+
+.jTask ol {
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.jEmotion {
+  background: #f9f6f2;
+  line-height: 1.8;
+}
+
+.jOpportunity {
+  background: #f9c79a;
+  line-height: 1.6;
+}
+
+.jOpportunity ol {
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ── 8. LoFi / HiFi ──────────────────────────────── */
+
+.lofiHifi {
+  position: relative;
+  min-height: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  overflow: hidden;
+}
+
+.splitBg {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  pointer-events: none;
+}
+
+.lofiHalf {
+  background: #ede9e3;
+  padding: 40px 20px 40px 160px;
+}
+
+.hifiHalf {
+  background: var(--accent-pink);
+  padding: 40px 160px 40px 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.wireframeLabel {
+  font-family: "Consolas", "Consola", monospace;
+  font-weight: bold;
+}
+
+.slideRow {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  padding: 0 200px;
+}
+
+.lofiContent {
+  display: flex;
+  align-items: center;
+  padding-right: 40px;
+  justify-content: space-around;
+}
+
+.hifiContent {
+  display: flex;
+  align-items: center;
+  padding-left: 40px;
+  justify-content: space-around;
+}
+
+.wireframeImgWrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 260px;
+  height: 520px;
+  border-radius: 9px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+}
+
+.arrowLeft,
+.arrowRight {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "Consolas", "Consola", monospace;
+  color: var(--text);
+  padding: 8px 20px;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.arrowLeft {
+  left: 160px;
+}
+
+.arrowLeft:not(:disabled):hover {
+  color: var(--accent-pink);
+}
+
+.arrowRight {
+  right: 160px;
+}
+
+.arrowRight:not(:disabled):hover {
+  background: #ece9e5;
+}
+
+.arrowLeft:disabled,
+.arrowRight:disabled {
+  opacity: 0.25;
+  cursor: default;
+  pointer-events: none;
+}
+
+.wireframeCaptions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  width: 552px;
+  font-size: 13px;
+  font-family: "Consolas", "Consola", monospace;
+}
+
+.dotRow {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--text);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+
+.dot:hover {
+  background: var(--text);
+  opacity: 0.4;
+}
+
+.dotActive {
+  background: var(--text);
+  transform: scale(1.3);
+  opacity: 1;
+}
+
+.slideDescription {
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 200px;
+}
+
+/* ── 9. Accessibility ────────────────────────────── */
+
+.accessibility {
+  background: #f9f8f7;
+  padding: 80px 160px;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.accessLabel {
+  font-family: "Consolas", "Consola", monospace;
+  font-weight: bold;
+  line-height: 1.6;
+}
+
+.accessCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.accessCard {
+  background: var(--accent-olive);
+  border-radius: 16px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.accessCard h3 {
+  font-family: "Consolas", "Consola", monospace;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ── 10. Impact & Learnings ──────────────────────── */
+
+.impact {
+  background: var(--section-bg);
+  padding: 80px 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.impactRow {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 40px;
+  align-items: start;
+  padding: 40px 0;
+}
+
+.impactRow:first-child {
+  padding-top: 0;
+}
+
+.impactRow + .impactRow {
+  border-top: 1px solid var(--border);
+}
+
+.impactContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.standAloneQuote {
+  font-style: italic;
+  font-weight: 600;
+  font-size: 18px;
+  padding-left: 16px;
+  border-left: 3px solid var(--text);
+}
+
+.impact .ctaRow {
+  margin-top: 48px;
+}
+
+/* ── Mobile (≤ 768px) ────────────────────────────── */
+
+@media (max-width: 768px) {
+  /* Shared */
+  .ctaBtn {
+    font-size: 16px;
+    padding: 14px 20px;
+  }
+
+  .infoLabel {
+    white-space: normal;
+  }
+
+  /* 1. Hero */
+  .heroImageWrap {
+    height: 260px;
+  }
+
+  /* 2. Info */
+  .info {
+    padding: 48px 24px;
+  }
+
+  .infoRow {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* 3. Problem & Goal */
+  .problemAndGoal {
+    grid-template-columns: 1fr;
+  }
+
+  .problemLeft,
+  .goalRight {
+    padding: 48px 24px;
+  }
+
+  /* 4. Research */
+  .research {
+    grid-template-columns: 1fr;
+    padding: 48px 24px;
+    gap: 32px;
+  }
+
+  .painCards {
+    grid-template-columns: 1fr;
+  }
+
+  /* 5. Quote */
+  .quoteSection {
+    padding: 48px 24px;
+  }
+
+  /* 6. Persona */
+  .persona {
+    grid-template-columns: 1fr;
+    padding: 48px 24px;
+    gap: 40px;
+  }
+
+  .goalsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* 7. Journey Map */
+  .journeySection {
+    grid-template-columns: 1fr;
+    padding: 48px 24px;
+    gap: 32px;
+  }
+
+  .journeyScroll {
+    padding-right: 0;
+  }
+
+  /* 8. LoFi / HiFi */
+  .lofiHifi {
+    min-height: unset;
+    gap: 0;
+  }
+
+  .splitBg {
+    display: none;
+  }
+
+  .arrowLeft,
+  .arrowRight {
+    display: none;
+  }
+
+  .slideRow {
+    grid-template-columns: 1fr;
+    padding: 0;
+    width: 100%;
+  }
+
+  .lofiContent {
+    background: #ede9e3;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 32px 20px 40px;
+  }
+
+  .lofiContent::before {
+    content: "LoFi";
+    font-family: "Consolas", "Consola", monospace;
+    font-weight: bold;
+    font-size: 18px;
+    align-self: flex-start;
+  }
+
+  .hifiContent {
+    background: var(--accent-pink);
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 32px 20px 40px;
+  }
+
+  .hifiContent::before {
+    content: "HiFi";
+    font-family: "Consolas", "Consola", monospace;
+    font-weight: bold;
+    font-size: 18px;
+    align-self: flex-start;
+  }
+
+  .wireframeImgWrap {
+    width: 200px;
+    height: 400px;
+  }
+
+  .slideDescription {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  /* 9. Accessibility */
+  .accessibility {
+    grid-template-columns: 1fr;
+    padding: 48px 24px;
+    gap: 32px;
+  }
+
+  .accessCards {
+    grid-template-columns: 1fr;
+  }
+
+  /* 10. Impact */
+  .impact {
+    padding: 48px 24px;
+  }
+
+  .impactRow {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

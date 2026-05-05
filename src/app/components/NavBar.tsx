@@ -1,15 +1,30 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import styles from "./styles/NavBar.module.css";
-import Toggle from "./Toggle";
 import useIsMobile from "./useIsMobile";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [clickedSection, setClickedSection] = useState("");
   const isMobile = useIsMobile(1024);
-  const [activeItem, setActiveItem] = useState("home");
+  const pathname = usePathname();
+  const router = useRouter();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const activeItem = mounted
+    ? pathname.startsWith("/projects")
+      ? "projects"
+      : pathname === "/"
+        ? clickedSection || "home"
+        : ""
+    : "";
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -20,12 +35,11 @@ const NavBar = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-    setActiveItem(sectionId);
   };
 
   return (
     <nav className={`${styles.navBar}`}>
-      <h1>rossella.</h1>
+      <span className={styles.logo}>rossella.</span>
       {isMobile && (
         <div className={styles.hamburger} onClick={toggleMenu}>
           <div className={styles.bar}></div>
@@ -37,69 +51,38 @@ const NavBar = () => {
           menuOpen && isMobile ? styles.active : ""
         }`}
       >
-        <li className={`${activeItem === "home" ? styles.active : ""}`}>
-          <Link
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection("home");
-            }}
-            href="/home"
-          >
+        <li className={activeItem === "home" ? styles.active : ""}>
+          <Link onClick={(e) => handleNavClick(e, "home")} href="/#home">
             home
           </Link>
         </li>
-        <li className={`${activeItem === "about" ? styles.active : ""}`}>
-          <Link
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection("about");
-            }}
-            href="/about"
-          >
+        <li className={activeItem === "about" ? styles.active : ""}>
+          <Link onClick={(e) => handleNavClick(e, "about")} href="/#about">
             about
           </Link>
         </li>
-        <li className={`${activeItem === "work" ? styles.active : ""}`}>
+        <li className={activeItem === "projects" ? styles.active : ""}>
           <Link
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection("work");
-            }}
-            href="/work"
+            onClick={(e) => handleNavClick(e, "projects")}
+            href="/#projects"
           >
-            work
+            projects
           </Link>
         </li>
-        <li className={`${activeItem === "contact" ? styles.active : ""}`}>
-          <Link
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection("contact");
-            }}
-            href="/contact"
-          >
+        <li className={activeItem === "contact" ? styles.active : ""}>
+          <Link onClick={(e) => handleNavClick(e, "contact")} href="/#contact">
             contact
           </Link>
         </li>
-        <li className={`${activeItem === "linkedin" ? styles.active : ""}`}>
+        <li>
           <Link
             href="https://www.linkedin.com/in/rossellafilocomo/"
             target="_blank"
           >
-            linkedin
+            linkedIn
           </Link>
         </li>
-
-        {/* Render Toggle inside the menu for mobile */}
-        {isMobile && (
-          <li className={styles.toggleItem}>
-            <Toggle />
-          </li>
-        )}
       </ul>
-
-      {/* Render Toggle outside the menu for larger screens */}
-      {!isMobile && <Toggle />}
     </nav>
   );
 };

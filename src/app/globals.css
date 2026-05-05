@@ -1,25 +1,26 @@
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
 :root {
-  --background: white;
+  --background: #f9f8f7;
+  --section-bg: #c6c2cd;
+  --text: #35363c;
+  --accent-pink: #edb7b3;
+  --accent-olive: #c1b580;
+  --border: #35363c;
 }
 
 [data-theme="dark"] {
-  --background: #274856;
+  --background: #1e1e24;
+  --section-bg: #2a2635;
+  --text: #d5e2e8;
+  --accent-pink: #c98a85;
+  --accent-olive: #9b9560;
+  --border: #d5e2e8;
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2 {
   color: #d5e2e8;
-}
-
-[data-theme="dark"] h1 {
-  color: #d5e2e8;
-}
-
-[data-theme="dark"] button {
-  background-color: #2d7490;
-  border-color: #d5e2e8;
-}
-
-[data-theme="dark"] button:hover {
-  background-color: #c0d4dc;
-  border-color: black;
-  color: black;
 }
 
 @font-face {
@@ -29,31 +30,34 @@
   font-style: normal;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  /* background-image: url("/background.svg"); */
-  /* background-repeat: no-repeat;
-  background-size: cover; */
-
-  font-family: "Montserrat", sans-serif;
-  font-size: 25px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  height: 100vh;
-}
-
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
-h1 {
-  color: rgb(5, 5, 5, 83%);
+html {
+  scroll-padding-top: 80px;
+}
+
+@media (max-width: 1024px) {
+  html {
+    scroll-padding-top: 68px;
+  }
+}
+
+body {
+  color: var(--text);
+  background: var(--background);
+  font-family: "Montserrat", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+nav {
+  font-family: "Consolas", "Consola", monospace;
 }
 
 a {
@@ -62,33 +66,17 @@ a {
 }
 
 button {
-  font-size: 22px;
-  font-family: "Montserrat", thin;
-  padding: 1.5vw;
-  background: #92cce3;
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+  padding: 19px 26px;
+  background: var(--accent-pink);
   border: 1px solid black;
   border-radius: 10px;
   text-transform: uppercase;
   cursor: pointer;
+  letter-spacing: 0.05em;
 }
 
 button:hover {
-  background: #32afe1;
-  border: 2px solid black;
-}
-
-nav,
-h1 {
-  font-family: "Consolas";
-}
-
-span {
-  font-size: 24px;
-}
-
-@media (max-width: 1024px) {
-  .button {
-    padding: 4vw;
-    font-size: 16px;
-  }
+  background: #e58f89;
 }

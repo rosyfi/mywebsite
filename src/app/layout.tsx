@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Montserrat } from "next/font/google";
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 import { ThemeProvider } from "next-themes";
 
 const montserrat = Montserrat({
@@ -21,10 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={montserrat.className} suppressHydrationWarning>
-      <body className="pageContainer">
+      <body>
         <ThemeProvider enableSystem={false}>
           <NavBar />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

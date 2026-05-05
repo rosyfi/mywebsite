@@ -1,12 +1,3 @@
 .container {
-  overflow: scroll;
-}
-
-.container::-webkit-scrollbar {
-  display: none; /* Hide scrollbar in Webkit-based browsers (Chrome, Edge, Safari) */
-}
-
-.container {
-  -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
-  scrollbar-width: none; /* Hide scrollbar in Firefox */
+  /* main content wrapper — sections handle their own backgrounds */
 }
