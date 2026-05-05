@@ -12,8 +12,8 @@ const SECTIONS: Section[] = ["home", "about", "projects", "contact"];
 const COLS    = 4;
 const FRAME_W = 110; // display px per frame
 const FRAME_H = 98;  // display px per frame
-// Sitting paws land at ~85% of the frame height
 const PAW_Y   = Math.round(FRAME_H * 0.85); // 83px from frame top
+const ARC_PX  = 80;  // how high (px) the cat arcs above the straight line between cards
 
 const framePos = (idx: number) =>
   `${-(idx % COLS) * FRAME_W}px ${-Math.floor(idx / COLS) * FRAME_H}px`;
@@ -38,7 +38,9 @@ export default function ScrollCat() {
   const activeSectionRef = useRef<Section>("home");
   const hasArrivedRef    = useRef(false);
   const timerRef         = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
-  const rafRef           = useRef<number | null>(null);
+  const scrollRafRef     = useRef<number | null>(null); // position-tracking rAF
+  const jumpRafRef       = useRef<number | null>(null); // arc-animation rAF
+  const isJumpingRef     = useRef(false);               // suppresses scroll tracking during arc
   const lastScrollYRef   = useRef(0);
 
   useEffect(() => {
@@ -52,6 +54,7 @@ export default function ScrollCat() {
       catRef.current.style.top  = `${rect.top - PAW_Y}px`;
     };
 
+    // CSS flyIn animation handler (arriving state only)
     const playSequence = (frames: number[], flip: boolean, state: AnimState) => {
       clearInterval(timerRef.current);
       setFlipped(flip);
@@ -72,10 +75,81 @@ export default function ScrollCat() {
       }, FRAME_MS);
     };
 
+    // JS-driven parabolic arc from one card to another
+    const jumpBetween = (toSection: Section, isForward: boolean) => {
+      if (!catRef.current) return;
+
+      // Cancel any in-progress arc
+      if (jumpRafRef.current !== null) cancelAnimationFrame(jumpRafRef.current);
+      isJumpingRef.current = true;
+      setAnimState("jumping"); // suppresses the idle bob while arc runs
+
+      // Use the cat's actual current pixel position as the arc start
+      // (may be mid-arc if a previous jump was interrupted)
+      const startX = parseFloat(catRef.current.style.left) || 0;
+      const startY = parseFloat(catRef.current.style.top)  || 0;
+
+      const toCard = document.querySelector(`#${toSection} [data-cat-perch]`) as HTMLElement;
+      if (!toCard) {
+        isJumpingRef.current = false;
+        setAnimState("idle");
+        return;
+      }
+
+      const duration  = SEQ_BOING.length * FRAME_MS; // 640ms
+      const startTime = performance.now();
+      const flip      = !isForward;
+
+      // Sprite frame sequence runs concurrently with position animation
+      clearInterval(timerRef.current);
+      setFlipped(flip);
+      setFrameIdx(SEQ_BOING[0]);
+      let step = 1;
+      timerRef.current = setInterval(() => {
+        if (step >= SEQ_BOING.length) {
+          clearInterval(timerRef.current);
+          setFrameIdx(0);
+          setFlipped(false);
+          return;
+        }
+        setFrameIdx(SEQ_BOING[step]);
+        step++;
+      }, FRAME_MS);
+
+      const tick = (now: number) => {
+        const t    = Math.min((now - startTime) / duration, 1);
+        const ease = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+
+        // Read target fresh each frame — card may still be scrolling into place
+        const toRect = toCard.getBoundingClientRect();
+        const endX   = toRect.left + 8;
+        const endY   = toRect.top - PAW_Y;
+
+        const x = startX + (endX - startX) * ease;
+        // Parabolic arc: lerp from start→end, minus a sine-curve lift above that line
+        const y = startY + (endY - startY) * ease - Math.sin(Math.PI * t) * ARC_PX;
+
+        if (catRef.current) {
+          catRef.current.style.left = `${x}px`;
+          catRef.current.style.top  = `${y}px`;
+        }
+
+        if (t < 1) {
+          jumpRafRef.current = requestAnimationFrame(tick);
+        } else {
+          jumpRafRef.current   = null;
+          isJumpingRef.current = false;
+          setAnimState("idle");
+        }
+      };
+
+      jumpRafRef.current = requestAnimationFrame(tick);
+    };
+
     const getActive = (scrollingDown: boolean): Section => {
       const vH = window.innerHeight;
       if (scrollingDown) {
-        // Forward: the furthest-down card that has entered the viewport wins
+        // Forward: furthest-down card that has entered the viewport wins
         let active: Section = "home";
         for (const id of SECTIONS) {
           if (id === "home") continue;
@@ -86,7 +160,7 @@ export default function ScrollCat() {
         }
         return active;
       } else {
-        // Backward: the topmost card still visible wins
+        // Backward: topmost card still visible wins
         for (const id of SECTIONS) {
           if (id === "home") continue;
           const card = document.querySelector(`#${id} [data-cat-perch]`) as HTMLElement;
@@ -103,23 +177,22 @@ export default function ScrollCat() {
       const scrollingDown  = currentScrollY >= lastScrollYRef.current;
       lastScrollYRef.current = currentScrollY;
 
-      // Track the active card's position every scroll frame via rAF
-      if (activeSectionRef.current !== "home") {
-        if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
-        rafRef.current = requestAnimationFrame(() => {
-          updatePos(activeSectionRef.current);
-          rafRef.current = null;
+      // Track active card's position each scroll frame, but pause during JS arc
+      if (activeSectionRef.current !== "home" && !isJumpingRef.current) {
+        if (scrollRafRef.current !== null) cancelAnimationFrame(scrollRafRef.current);
+        scrollRafRef.current = requestAnimationFrame(() => {
+          if (!isJumpingRef.current) updatePos(activeSectionRef.current);
+          scrollRafRef.current = null;
         });
       }
 
-      // Section change detection (direction-aware, card-visibility-based)
       const active = getActive(scrollingDown);
       const prev   = prevRef.current;
       if (active === prev) return;
 
       const prevIdx   = SECTIONS.indexOf(prev);
       const activeIdx = SECTIONS.indexOf(active);
-      prevRef.current        = active;
+      prevRef.current          = active;
       activeSectionRef.current = active;
 
       if (active === "home") {
@@ -129,27 +202,24 @@ export default function ScrollCat() {
 
       setVisible(true);
 
-      // Snap position to destination card immediately so the jump arc
-      // starts from there (the card may still be scrolling into place)
-      updatePos(active);
-
-      if (!hasArrivedRef.current && active === "about") {
+      if (!hasArrivedRef.current) {
+        // First non-home arrival ever — fly in from the illustration
         hasArrivedRef.current = true;
-        // flip=true: cat faces left, traveling from illustration→card
+        updatePos(active);
         playSequence(SEQ_ARRIVE, true, "arriving");
         return;
       }
 
       const isForward = activeIdx > prevIdx;
-      // flip when going backward (cat faces right, heading back up)
-      playSequence(SEQ_BOING, !isForward, "jumping");
+      jumpBetween(active, isForward);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
       clearInterval(timerRef.current);
-      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      if (scrollRafRef.current !== null) cancelAnimationFrame(scrollRafRef.current);
+      if (jumpRafRef.current  !== null) cancelAnimationFrame(jumpRafRef.current);
     };
   }, []);
 
@@ -162,7 +232,6 @@ export default function ScrollCat() {
         styles.cat,
         animState === "idle"     ? styles.idle    : "",
         animState === "arriving" ? styles.arriving : "",
-        animState === "jumping"  ? styles.jumping  : "",
         !visible                 ? styles.hidden   : "",
       ].join(" ")}
       aria-hidden="true"
