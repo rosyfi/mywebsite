@@ -30,21 +30,10 @@ const NavBar = () => {
     setMenuOpen(!menuOpen);
   };
 
-  const handleNavClick = (e: React.MouseEvent, sectionId: string) => {
-    e.preventDefault();
-    setMenuOpen(false);
-    setClickedSection(sectionId);
-    if (pathname === "/") {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        const nav = document.querySelector("nav");
-        const navHeight = nav ? nav.offsetHeight : 0;
-        const top =
-          element.getBoundingClientRect().top + window.scrollY - navHeight;
-        window.scrollTo({ top, behavior: "smooth" });
-      }
-    } else {
-      router.push(`/#${sectionId}`);
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
