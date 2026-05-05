@@ -37,6 +37,16 @@ const NavBar = () => {
     }
   };
 
+  const handleNavClick = (e: React.MouseEvent, sectionId: string) => {
+    e.preventDefault();
+    setClickedSection(sectionId);
+    if (pathname !== "/") {
+      router.push(`/#${sectionId}`);
+    } else {
+      scrollToSection(sectionId);
+    }
+  };
+
   return (
     <nav className={`${styles.navBar}`}>
       <span className={styles.logo}>rossella.</span>

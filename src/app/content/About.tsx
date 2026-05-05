@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import styles from "./styles/About.module.css";
 
@@ -132,10 +133,12 @@ const About = () => {
             <div className={styles.projectCard}>
               <h3>Bugly</h3>
               <div className={styles.projectImageWrapper}>
-                <img
+                <Image
                   src="/projects/bugly.png"
                   alt="Bugly app screenshot"
                   className={styles.projectImage}
+                  width={500}
+                  height={300}
                 />
               </div>
               <p>
