@@ -81,15 +81,16 @@
 @media (max-width: 1024px) {
   .container {
     flex-direction: column;
-    padding: 30px;
-    gap: 24px;
+    padding: 30px 24px;
+    gap: 16px;
     min-height: unset;
   }
 
   .containerLeft {
-    align-items: flex-start;
+    align-items: center;
     gap: 20px;
     width: 100%;
+    padding-top: 0;
   }
 
   .containerRight {
@@ -98,12 +99,30 @@
 
   .container h1 {
     font-size: 14vw;
-    line-height: 0.85;
+    line-height: 0.9;
     min-height: unset;
+    align-self: flex-start;
   }
 
   .container p {
     font-size: 16px;
     max-width: 100%;
+    align-self: flex-start;
+  }
+
+  .container button {
+    font-size: 16px;
+    padding: 14px 20px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 24px 20px;
+  }
+
+  .container h1 {
+    font-size: 16vw;
   }
 }
