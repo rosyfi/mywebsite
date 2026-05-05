@@ -158,9 +158,9 @@ const About = () => {
                 lists based on their destination, weather, trip duration,
                 planned activities, and number of travelers.
               </p>
-              <a href="#" className={styles.viewLink}>
+              <Link href="/projects/packme" className={styles.viewLink}>
                 View Project →
-              </a>
+              </Link>
             </div>
           </div>
         </div>
