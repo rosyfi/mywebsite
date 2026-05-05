@@ -44,7 +44,7 @@ const About = () => {
       {/* ── ROW 1: Bio / Stats ── */}
       <section id="about" className={styles.section}>
         <div className={styles.row}>
-          <div className={`${styles.labelCard} ${styles.bioCard}`}>
+          <div className={`${styles.labelCard} ${styles.bioCard}`} data-cat-perch>
             <h2>Rossella Filocomo.</h2>
             <p>
               I&apos;m a user-centered UX/UI Designer with a background in
@@ -109,7 +109,7 @@ const About = () => {
       {/* ── ROW 2: Projects ── */}
       <section id="projects" className={styles.section}>
         <div className={styles.row}>
-          <div className={`${styles.labelCard} ${styles.projectsCard}`}>
+          <div className={`${styles.labelCard} ${styles.projectsCard}`} data-cat-perch>
             <h2>Projects.</h2>
             <p>
               A selection of my UX projects, in which I develop user-centered
@@ -169,7 +169,7 @@ const About = () => {
       {/* ── ROW 3: Contact ── */}
       <section id="contact" className={styles.section}>
         <div className={styles.row}>
-          <div className={`${styles.labelCard} ${styles.contactCard}`}>
+          <div className={`${styles.labelCard} ${styles.contactCard}`} data-cat-perch>
             <h2>Contact.</h2>
             <p>
               Interested in working together or have questions? You can reach me

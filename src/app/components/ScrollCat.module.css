@@ -1,0 +1,51 @@
+.cat {
+  position: fixed;
+  /* Horizontally: frame center (~55px) aligns with card left edge (160px) */
+  left: 105px;
+  /* Vertically: paws (~85% of 98px = 83px into frame) land on card top (112px) */
+  top: 29px;
+  z-index: 100;
+  pointer-events: none;
+  transform-origin: bottom center;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+/* Gentle breathing bob when settled */
+.idle {
+  animation: bob 2.8s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+
+/* Fly in from where the girl illustration lives (upper-right of viewport).
+   Duration matches SEQ_ARRIVE: 14 frames × 80ms = 1120ms */
+.arriving {
+  animation: flyIn 1120ms ease-out forwards;
+}
+
+@keyframes flyIn {
+  0%   { transform: translate(50vw, 16vh) scale(0.8); opacity: 0; }
+  8%   { opacity: 1; }
+  100% { transform: translate(0, 0) scale(1); opacity: 1; }
+}
+
+/* Sprite frame display — background-image and background-position set inline */
+.sprite {
+  width: 110px;
+  height: 98px;
+  background-size: 440px 490px; /* full sheet scaled: 4×110 × 5×98 */
+  background-repeat: no-repeat;
+}
+
+/* Hidden on mobile — cat only makes sense in the desktop two-column layout */
+@media (max-width: 1024px) {
+  .cat {
+    display: none;
+  }
+}

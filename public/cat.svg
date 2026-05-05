@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 88" fill="none">
+  <!-- Tail -->
+  <path d="M 52 75 Q 68 64 63 50 Q 58 37 65 27" stroke="#1C1C1C" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- Body -->
+  <ellipse cx="33" cy="64" rx="22" ry="20" fill="white" stroke="#1C1C1C" stroke-width="2.5"/>
+  <!-- Body spot left -->
+  <ellipse cx="24" cy="61" rx="10" ry="9" fill="#1C1C1C"/>
+  <!-- Body spot right small -->
+  <circle cx="43" cy="72" r="5" fill="#1C1C1C"/>
+  <!-- Head -->
+  <circle cx="33" cy="29" r="20" fill="white" stroke="#1C1C1C" stroke-width="2.5"/>
+  <!-- Left ear -->
+  <path d="M 15 19 L 8 2 L 24 12 Z" fill="white" stroke="#1C1C1C" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M 16 17 L 11 5 L 23 11 Z" fill="#F2B8B5"/>
+  <!-- Right ear -->
+  <path d="M 51 19 L 47 12 L 62 2 Z" fill="white" stroke="#1C1C1C" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M 50 17 L 48 13 L 60 5 Z" fill="#F2B8B5"/>
+  <!-- Eyes -->
+  <circle cx="25" cy="27" r="4" fill="#1C1C1C"/>
+  <circle cx="41" cy="27" r="4" fill="#1C1C1C"/>
+  <!-- Eye highlights -->
+  <circle cx="26.5" cy="25.5" r="1.4" fill="white"/>
+  <circle cx="42.5" cy="25.5" r="1.4" fill="white"/>
+  <!-- Nose -->
+  <ellipse cx="33" cy="34" rx="3" ry="2.2" fill="#E8928A"/>
+  <!-- Mouth -->
+  <path d="M 29.5 36.5 Q 33 39.5 36.5 36.5" stroke="#1C1C1C" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Collar -->
+  <path d="M 14 42 Q 33 51 52 42" stroke="#E8928A" stroke-width="5" stroke-linecap="round"/>
+  <!-- Bell -->
+  <circle cx="33" cy="50" r="5" fill="#CCA000" stroke="#1C1C1C" stroke-width="1.5"/>
+  <!-- Front paws -->
+  <ellipse cx="21" cy="83" rx="9" ry="5" fill="white" stroke="#1C1C1C" stroke-width="2.5"/>
+  <ellipse cx="44" cy="83" rx="9" ry="5" fill="white" stroke="#1C1C1C" stroke-width="2.5"/>
+</svg>
