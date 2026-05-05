@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import styles from "./styles/NavBar.module.css";
-import Toggle from "./Toggle";
+// import Toggle from "./Toggle";
 import useIsMobile from "./useIsMobile";
 
 const NavBar = () => {
@@ -94,15 +94,15 @@ const NavBar = () => {
         </li>
 
         {/* Render Toggle inside the menu for mobile */}
-        {isMobile && (
+        {/* {isMobile && (
           <li className={styles.toggleItem}>
             <Toggle />
           </li>
-        )}
+        )} */}
       </ul>
 
       {/* Render Toggle outside the menu for larger screens */}
-      {!isMobile && <Toggle />}
+      {/* {!isMobile && <Toggle />} */}
     </nav>
   );
 };

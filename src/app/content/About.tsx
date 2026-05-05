@@ -10,7 +10,9 @@ const About = () => {
     email: "",
     message: "",
   });
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -140,7 +142,7 @@ const About = () => {
                 transparently track their bugs preventing workflow
                 interruptions, and increasing trust in the system.
               </p>
-              <a href="#" className={styles.viewLink}>
+              <a href="/projects/bugly" className={styles.viewLink}>
                 View Project →
               </a>
             </div>
@@ -238,14 +240,22 @@ const About = () => {
                   onChange={handleChange}
                 />
               </div>
-              <button type="submit" className={styles.sendButton} disabled={status === "sending"}>
+              <button
+                type="submit"
+                className={styles.sendButton}
+                disabled={status === "sending"}
+              >
                 {status === "sending" ? "SENDING..." : "SEND"}
               </button>
               {status === "success" && (
-                <p className={styles.formSuccess}>Message sent! I&apos;ll get back to you soon.</p>
+                <p className={styles.formSuccess}>
+                  Message sent! I&apos;ll get back to you soon.
+                </p>
               )}
               {status === "error" && (
-                <p className={styles.formError}>Something went wrong. Please try again.</p>
+                <p className={styles.formError}>
+                  Something went wrong. Please try again.
+                </p>
               )}
             </form>
           </div>
