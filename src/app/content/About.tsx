@@ -42,9 +42,9 @@ const About = () => {
   return (
     <div className={styles.wrapper}>
       {/* ── ROW 1: Bio / Stats ── */}
-      <section className={styles.section}>
+      <section id="about" className={styles.section}>
         <div className={styles.row}>
-          <div id="about" className={`${styles.labelCard} ${styles.bioCard}`}>
+          <div className={`${styles.labelCard} ${styles.bioCard}`}>
             <h2>Rossella Filocomo.</h2>
             <p>
               I&apos;m a user-centered UX/UI Designer with a background in
@@ -107,10 +107,9 @@ const About = () => {
       </section>
 
       {/* ── ROW 2: Projects ── */}
-      <section className={styles.section}>
+      <section id="projects" className={styles.section}>
         <div className={styles.row}>
           <div
-            id="projects"
             className={`${styles.labelCard} ${styles.projectsCard}`}
           >
             <h2>Projects.</h2>
@@ -170,10 +169,9 @@ const About = () => {
       </section>
 
       {/* ── ROW 3: Contact ── */}
-      <section className={styles.section}>
+      <section id="contact" className={styles.section}>
         <div className={styles.row}>
           <div
-            id="contact"
             className={`${styles.labelCard} ${styles.contactCard}`}
           >
             <h2>Contact.</h2>

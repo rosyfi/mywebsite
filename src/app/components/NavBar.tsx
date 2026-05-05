@@ -49,7 +49,13 @@ const NavBar = () => {
 
   return (
     <nav className={`${styles.navBar}`}>
-      <span className={styles.logo}>rossella.</span>
+      <Link
+        onClick={(e) => handleNavClick(e, "home")}
+        href="/#home"
+        className={styles.logo}
+      >
+        rossella.
+      </Link>
       {isMobile && (
         <div className={styles.hamburger} onClick={toggleMenu}>
           <div className={styles.bar}></div>
@@ -61,11 +67,6 @@ const NavBar = () => {
           menuOpen && isMobile ? styles.active : ""
         }`}
       >
-        <li className={activeItem === "home" ? styles.active : ""}>
-          <Link onClick={(e) => handleNavClick(e, "home")} href="/#home">
-            home
-          </Link>
-        </li>
         <li className={activeItem === "about" ? styles.active : ""}>
           <Link onClick={(e) => handleNavClick(e, "about")} href="/#about">
             about
