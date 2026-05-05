@@ -1,9 +1,6 @@
 .cat {
   position: fixed;
-  /* Horizontally: frame center (~55px) aligns with card left edge (160px) */
-  left: 105px;
-  /* Vertically: paws (~85% of 98px = 83px into frame) land on card top (112px) */
-  top: 29px;
+  /* left and top set dynamically in JS to track each card's getBoundingClientRect() */
   z-index: 100;
   pointer-events: none;
   transform-origin: bottom center;
@@ -21,6 +18,21 @@
 @keyframes bob {
   0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(-5px); }
+}
+
+/* Visible jump arc — cat rises then lands back on the card.
+   Duration matches SEQ_BOING: 8 frames × 80ms = 640ms */
+.jumping {
+  animation: jumpArc 640ms ease-out forwards;
+}
+
+@keyframes jumpArc {
+  0%   { transform: translateY(0); }
+  25%  { transform: translateY(-65px); }
+  50%  { transform: translateY(-80px); }
+  75%  { transform: translateY(-22px); }
+  88%  { transform: translateY(7px); }
+  100% { transform: translateY(0); }
 }
 
 /* Fly in from where the girl illustration lives (upper-right of viewport).
