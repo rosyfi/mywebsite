@@ -22,8 +22,8 @@ const NavBar = () => {
     ? pathname.startsWith("/projects")
       ? "projects"
       : pathname === "/"
-      ? clickedSection || "home"
-      : ""
+        ? clickedSection || "home"
+        : ""
     : "";
 
   const toggleMenu = () => {
@@ -39,7 +39,8 @@ const NavBar = () => {
       if (element) {
         const nav = document.querySelector("nav");
         const navHeight = nav ? nav.offsetHeight : 0;
-        const top = element.getBoundingClientRect().top + window.scrollY - navHeight;
+        const top =
+          element.getBoundingClientRect().top + window.scrollY - navHeight;
         window.scrollTo({ top, behavior: "smooth" });
       }
     } else {
@@ -72,7 +73,10 @@ const NavBar = () => {
           </Link>
         </li>
         <li className={activeItem === "projects" ? styles.active : ""}>
-          <Link onClick={(e) => handleNavClick(e, "projects")} href="/#projects">
+          <Link
+            onClick={(e) => handleNavClick(e, "projects")}
+            href="/#projects"
+          >
             projects
           </Link>
         </li>
@@ -86,7 +90,7 @@ const NavBar = () => {
             href="https://www.linkedin.com/in/rossellafilocomo/"
             target="_blank"
           >
-            linked
+            linkedIn
           </Link>
         </li>
       </ul>
