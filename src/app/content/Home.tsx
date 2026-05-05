@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./styles/Home.module.css";
 import TypeIt from "typeit";
 import ThemedImage from "../components/ThemedImage";
@@ -8,6 +8,7 @@ import useIsMobile from "../components/useIsMobile";
 
 const Home = () => {
   const isMobile = useIsMobile(1024);
+  const typeItRef = useRef<TypeIt | null>(null);
 
   const scrollToContact = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
@@ -15,24 +16,26 @@ const Home = () => {
 
   useEffect(() => {
     const element = document.getElementById("simpleUsage");
-    if (element) {
-      new TypeIt(element, {
-        speed: 50,
-        waitUntilVisible: true,
-        cursor: false,
-      })
-        .type("&lt;&gt;Turning", { delay: 0 })
-        .break({ delay: 0 })
-        .type("D")
-        .type("esigns")
-        .break({ delay: 200 })
-        .pause(100)
-        .type("Into ")
-        .break({ delay: 120 })
-        .pause(150)
-        .type("Reality&lt;/&gt;")
-        .go();
-    }
+    // Ref survives StrictMode's fake unmount/remount — guard prevents double init.
+    // On real navigation, the component instance is discarded so the ref resets.
+    if (!element || typeItRef.current) return;
+
+    element.innerHTML = "";
+    typeItRef.current = new TypeIt(element, {
+      speed: 50,
+      cursor: false,
+    })
+      .type("&lt;&gt;Turning", { delay: 0 })
+      .break({ delay: 0 })
+      .type("D")
+      .type("esigns")
+      .break({ delay: 200 })
+      .pause(100)
+      .type("Into ")
+      .break({ delay: 120 })
+      .pause(150)
+      .type("Reality&lt;/&gt;")
+      .go();
   }, []);
 
   return (

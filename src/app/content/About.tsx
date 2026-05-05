@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import styles from "./styles/About.module.css";
 
 const About = () => {
@@ -142,9 +143,9 @@ const About = () => {
                 transparently track their bugs preventing workflow
                 interruptions, and increasing trust in the system.
               </p>
-              <a href="/projects/bugly" className={styles.viewLink}>
+              <Link href="/projects/bugly" className={styles.viewLink}>
                 View Project →
-              </a>
+              </Link>
             </div>
             <div className={styles.projectCard}>
               <h3>PackMe</h3>

@@ -36,6 +36,16 @@
   margin: 0;
 }
 
+html {
+  scroll-padding-top: 80px;
+}
+
+@media (max-width: 1024px) {
+  html {
+    scroll-padding-top: 68px;
+  }
+}
+
 body {
   color: var(--text);
   background: var(--background);
