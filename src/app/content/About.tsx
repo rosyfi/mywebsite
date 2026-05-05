@@ -109,9 +109,7 @@ const About = () => {
       {/* ── ROW 2: Projects ── */}
       <section id="projects" className={styles.section}>
         <div className={styles.row}>
-          <div
-            className={`${styles.labelCard} ${styles.projectsCard}`}
-          >
+          <div className={`${styles.labelCard} ${styles.projectsCard}`}>
             <h2>Projects.</h2>
             <p>
               A selection of my UX projects, in which I develop user-centered
@@ -136,8 +134,8 @@ const About = () => {
                   src="/projects/bugly.png"
                   alt="Bugly app screenshot"
                   className={styles.projectImage}
-                  width={500}
-                  height={300}
+                  width={600}
+                  height={400}
                 />
               </div>
               <p>
@@ -171,9 +169,7 @@ const About = () => {
       {/* ── ROW 3: Contact ── */}
       <section id="contact" className={styles.section}>
         <div className={styles.row}>
-          <div
-            className={`${styles.labelCard} ${styles.contactCard}`}
-          >
+          <div className={`${styles.labelCard} ${styles.contactCard}`}>
             <h2>Contact.</h2>
             <p>
               Interested in working together or have questions? You can reach me

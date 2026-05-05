@@ -32,15 +32,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Replace '"/' with '"/mywebsite/' in files
-        run: |
-          find ./src/app -type f -exec sed -i 's|"/|"/mywebsite/|g' {} +
-
-      - name: Install tree and print /src/app directory structure
-        run: |
-          sudo apt-get update && sudo apt-get install -y tree
-          tree ./src/app
-
       - name: Write Next.js configuration
         run: |
           echo '/** @type {import("next").NextConfig} */' > next.config.mjs
