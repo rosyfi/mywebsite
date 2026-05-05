@@ -145,7 +145,7 @@ export default function BuglyPage() {
   };
   const onSlideTouchEnd = (e: React.TouchEvent) => {
     const delta = swipeTouchStartX.current - e.changedTouches[0].clientX;
-    if (Math.abs(delta) > 50) delta > 0 ? next() : prev();
+    if (Math.abs(delta) > 50) { if (delta > 0) next(); else prev(); }
   };
 
   return (

@@ -37,14 +37,12 @@ const NavBar = () => {
     }
   };
 
-  const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    sectionId: string
-  ) => {
+  const handleNavClick = (e: React.MouseEvent, sectionId: string) => {
+    e.preventDefault();
     setClickedSection(sectionId);
-    setMenuOpen(false);
-    if (pathname === "/") {
-      e.preventDefault();
+    if (pathname !== "/") {
+      router.push(`/#${sectionId}`);
+    } else {
       scrollToSection(sectionId);
     }
   };
