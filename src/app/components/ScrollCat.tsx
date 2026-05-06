@@ -13,7 +13,7 @@ const COLS    = 4;
 const FRAME_W = 110; // display px per frame
 const FRAME_H = 98;  // display px per frame
 const PAW_Y   = Math.round(FRAME_H * 0.85); // 83px from frame top
-const ARC_PX  = 80;  // how high (px) the cat arcs above the straight line between cards
+const ARC_PX  = 200; // how high (px) the cat arcs above the straight line between cards
 
 const framePos = (idx: number) =>
   `${-(idx % COLS) * FRAME_W}px ${-Math.floor(idx / COLS) * FRAME_H}px`;
@@ -24,7 +24,6 @@ const framePos = (idx: number) =>
 // 12=desc-fast 13=land-approach 14=walk-post 15=land-impact
 // 16=walk-fwd  17=stand-front   18=stand-happy 19=sit-final
 const SEQ_ARRIVE: number[] = [0, 1, 2, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 19];
-const SEQ_BOING:  number[] = [1, 2, 5, 9, 10, 11, 15, 19];
 const FRAME_MS = 80;
 
 export default function ScrollCat() {
@@ -96,42 +95,48 @@ export default function ScrollCat() {
         return;
       }
 
-      const duration  = SEQ_BOING.length * FRAME_MS; // 640ms
+      const duration  = SEQ_ARRIVE.length * FRAME_MS; // 1120ms
       const startTime = performance.now();
       const flip      = !isForward;
 
-      // Sprite frame sequence runs concurrently with position animation
       clearInterval(timerRef.current);
       setFlipped(flip);
-      setFrameIdx(SEQ_BOING[0]);
-      let step = 1;
-      timerRef.current = setInterval(() => {
-        if (step >= SEQ_BOING.length) {
-          clearInterval(timerRef.current);
-          setFrameIdx(0);
-          setFlipped(false);
-          return;
-        }
-        setFrameIdx(SEQ_BOING[step]);
-        step++;
-      }, FRAME_MS);
+
+      // Map arc progress → a single pose, held through the flight
+      // Brief crouch+launch at start, stretched apex during flight, land at end
+      const jumpFrame = (t: number): number => {
+        if (t < 0.08) return 1;  // pre-crouch
+        if (t < 0.16) return 2;  // deep-crouch
+        if (t < 0.24) return 5;  // launch
+        if (t < 0.80) return 9;  // apex-extend — held through the whole arc
+        if (t < 0.88) return 13; // land-approach
+        if (t < 0.95) return 15; // land-impact
+        return 19;               // sit-final
+      };
 
       const tick = (now: number) => {
-        const t    = Math.min((now - startTime) / duration, 1);
-        const ease = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+        const t = Math.min((now - startTime) / duration, 1);
+        const s = t * t * (3 - 2 * t); // smoothstep
+
+        setFrameIdx(jumpFrame(t));
+
+        // Tilt: sin(πt) peaks at the apex (0→max→0).
+        // +deg rotates clockwise: nose-down for right-facing cat (downward jump),
+        // nose-up for left-facing/flipped cat (upward jump) — no sign flip needed.
+        const tilt = Math.sin(Math.PI * t) * 30;
 
         // Read target fresh each frame — card may still be scrolling into place
         const toRect = toCard.getBoundingClientRect();
         const endX   = toRect.left + 8;
         const endY   = toRect.top - PAW_Y;
 
-        const x = startX + (endX - startX) * ease;
-        // Parabolic arc: lerp from start→end, minus a sine-curve lift above that line
-        const y = startY + (endY - startY) * ease - Math.sin(Math.PI * t) * ARC_PX;
+        const x = startX + (endX - startX) * s;
+        const y = startY + (endY - startY) * s - Math.sin(Math.PI * t) * ARC_PX;
 
         if (catRef.current) {
-          catRef.current.style.left = `${x}px`;
-          catRef.current.style.top  = `${y}px`;
+          catRef.current.style.left      = `${x}px`;
+          catRef.current.style.top       = `${y}px`;
+          catRef.current.style.transform = `rotate(${tilt}deg)`;
         }
 
         if (t < 1) {
@@ -139,6 +144,9 @@ export default function ScrollCat() {
         } else {
           jumpRafRef.current   = null;
           isJumpingRef.current = false;
+          setFrameIdx(0);
+          setFlipped(false);
+          if (catRef.current) catRef.current.style.transform = "";
           setAnimState("idle");
         }
       };

@@ -10,15 +10,6 @@
   opacity: 0;
 }
 
-/* Gentle breathing bob when settled */
-.idle {
-  animation: bob 2.8s ease-in-out infinite;
-}
-
-@keyframes bob {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-5px); }
-}
 
 /* Fly in from where the girl illustration lives (upper-right of viewport).
    Duration matches SEQ_ARRIVE: 14 frames × 80ms = 1120ms */
