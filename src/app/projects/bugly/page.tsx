@@ -154,7 +154,7 @@ export default function BuglyPage() {
       <section className={styles.hero}>
         <div className={styles.heroImageWrap}>
           <Image
-            src="/projects/bugly_hero.jpg"
+            src="/projects/bugly_hero.png"
             alt="Bugly project mockup"
             fill
             style={{ objectFit: "contain" }}

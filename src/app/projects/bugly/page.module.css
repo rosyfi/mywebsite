@@ -63,6 +63,7 @@
   height: 686px;
   border-radius: 24px;
   overflow: hidden;
+  background: var(--background);
 }
 
 /* ── 2. Project Info ─────────────────────────────── */
