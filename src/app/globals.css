@@ -7,20 +7,33 @@
   --accent-pink: #edb7b3;
   --accent-olive: #c1b580;
   --border: #35363c;
+  --card-bg: #ece9e5;
+  --surface: #f5f3f0;
+  --input-bg: #ffffff;
+  --input-border: #838383;
+  --muted: #8a8a8a;
+  --placeholder-bg: #d9d9d9;
+  --button-hover: #e58f89;
+  --label-pink: #edb7b3;
+  --label-olive: #c1b580;
 }
 
 [data-theme="dark"] {
-  --background: #1e1e24;
-  --section-bg: #2a2635;
-  --text: #d5e2e8;
-  --accent-pink: #c98a85;
-  --accent-olive: #9b9560;
-  --border: #d5e2e8;
-}
-
-[data-theme="dark"] h1,
-[data-theme="dark"] h2 {
-  color: #d5e2e8;
+  --background: #1e1c21;
+  --section-bg: #2d2a38;
+  --text: #eae4d8;
+  --accent-pink: #d4918c;
+  --accent-olive: #c4aa6a;
+  --border: #4a4558;
+  --card-bg: #28252e;
+  --surface: #38353f;
+  --input-bg: #332f3c;
+  --input-border: #5a5568;
+  --muted: #9a94a4;
+  --placeholder-bg: #3c3847;
+  --button-hover: #b87570;
+  --label-pink: #6e3d3a;
+  --label-olive: #5e5230;
 }
 
 @font-face {
@@ -70,7 +83,7 @@ button {
   font-family: "Montserrat", sans-serif;
   padding: 19px 26px;
   background: var(--accent-pink);
-  border: 1px solid black;
+  border: 1px solid var(--border);
   border-radius: 10px;
   text-transform: uppercase;
   cursor: pointer;
@@ -78,5 +91,5 @@ button {
 }
 
 button:hover {
-  background: #e58f89;
+  background: var(--button-hover);
 }

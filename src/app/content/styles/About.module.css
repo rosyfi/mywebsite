@@ -1,5 +1,5 @@
 .wrapper {
-  background: #ece9e5;
+  background: var(--card-bg);
   padding: 60px 160px;
   display: flex;
   flex-direction: column;
@@ -38,7 +38,7 @@
   display: grid;
   grid-template-columns: 340px 80px 1fr;
   align-items: stretch;
-  background: #ece9e5;
+  background: var(--card-bg);
 }
 
 /* ── Label cards (left column) ── */
@@ -53,12 +53,12 @@
 }
 
 .bioCard {
-  background: var(--accent-olive);
+  background: var(--label-olive);
   height: fit-content;
 }
 
 .projectsCard {
-  background: var(--accent-pink);
+  background: var(--label-pink);
   height: fit-content;
 }
 
@@ -110,7 +110,7 @@
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: #ece9e5;
+  background: var(--card-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -137,10 +137,10 @@
 }
 
 .iconBgOlive {
-  --icon-circle-bg: var(--accent-olive);
+  --icon-circle-bg: var(--label-olive);
 }
 .iconBgPink {
-  --icon-circle-bg: var(--accent-pink);
+  --icon-circle-bg: var(--label-pink);
 }
 .iconBgGray {
   --icon-circle-bg: var(--section-bg);
@@ -176,17 +176,17 @@
   position: absolute;
   border-radius: 50%;
   background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.55) 0%,
-    rgba(255, 255, 255, 0.08) 45%,
-    rgba(255, 255, 255, 0.14) 100%
+    135deg,
+    rgba(255, 255, 255, 0.58) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(0, 0, 0, 0.06) 100%
   );
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.28);
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    0 2px 8px rgba(0, 0, 0, 0.06),
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.9),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+    6px 10px 32px rgba(0, 0, 0, 0.13),
+    2px 4px 8px rgba(0, 0, 0, 0.07),
+    inset 2px 2px 1px rgba(255, 255, 255, 0.88),
+    inset -2px -2px 2px rgba(0, 0, 0, 0.07);
   backdrop-filter: blur(24px) saturate(160%);
   -webkit-backdrop-filter: blur(24px) saturate(160%);
   display: flex;
@@ -201,21 +201,29 @@
 .statBubbleLarge {
   width: 310px;
   height: 310px;
+  left: 355px;
+  top: 5px;
 }
 
 .statBubbleTopLeft {
   width: 185px;
   height: 185px;
+  left: 100px;
+  top: 50px;
 }
 
 .statBubbleBottomLeft {
   width: 225px;
   height: 225px;
+  left: 200px;
+  top: 255px;
 }
 
 .statBubbleBottomRight {
   width: 200px;
   height: 200px;
+  left: 580px;
+  top: 295px;
 }
 
 .statNumber {
@@ -263,7 +271,7 @@
 
 .projectCard {
   flex: 1;
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--surface);
   border-radius: 24px;
   padding: 32px;
   display: flex;
@@ -278,14 +286,14 @@
 }
 
 .projectImagePlaceholder {
-  background: #d9d9d9;
+  background: var(--placeholder-bg);
   border-radius: 12px;
   height: 200px;
   width: 100%;
 }
 
 .projectImageWrapper {
-  background: #ece9e5;
+  background: var(--card-bg);
   border-radius: 12px;
   height: 200px;
   width: 100%;
@@ -300,7 +308,7 @@
 }
 
 .projectImagePlaceholderWip {
-  background: #ece9e5;
+  background: var(--card-bg);
   border-radius: 12px;
   height: 200px;
   width: 100%;
@@ -373,13 +381,13 @@
 
 .req {
   font-size: 13px;
-  color: #8a8a8a;
+  color: var(--muted);
 }
 
 .formGroup input,
 .formGroup textarea {
-  background: white;
-  border: 1px solid #838383;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   border-radius: 24px;
   padding: 16px 20px;
   font-size: 16px;
@@ -417,6 +425,24 @@
   margin-top: 10px;
   color: #b00020;
   font-size: 0.9rem;
+}
+
+/* ── Bubble float animations (mobile) ── */
+@keyframes floatBubble0 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-10px, 14px); }
+}
+@keyframes floatBubble1 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(12px, -10px); }
+}
+@keyframes floatBubble2 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(10px, -12px); }
+}
+@keyframes floatBubble3 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-12px, 10px); }
 }
 
 /* ── Mobile ── */
@@ -458,37 +484,17 @@
   }
 
   .statsBubbles {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    min-height: auto;
+    position: relative;
+    min-height: 280px;
   }
 
   .statBubbleLarge,
   .statBubbleTopLeft,
   .statBubbleBottomLeft,
   .statBubbleBottomRight {
-    position: static;
-    width: auto;
-    height: auto;
-    aspect-ratio: 1;
-    top: auto;
+    position: absolute;
     left: auto;
-    right: auto;
-    bottom: auto;
-  }
-
-  .statNumber,
-  .statNumberLg {
-    font-size: 48px;
-  }
-
-  .statBig {
-    font-size: 36px;
-  }
-
-  .statLabel {
-    font-size: 12px;
+    top: auto;
   }
 
   .projectsContent {

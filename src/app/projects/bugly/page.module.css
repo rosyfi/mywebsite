@@ -34,7 +34,7 @@
   font-size: 20px;
   padding: 19px 26px;
   background: var(--accent-pink);
-  border: 1px solid black;
+  border: 1px solid var(--border);
   border-radius: 10px;
   text-transform: uppercase;
   cursor: pointer;
@@ -46,13 +46,13 @@
 }
 
 .ctaBtn:hover {
-  background: #e58f89;
+  background: var(--button-hover);
 }
 
 /* ── 1. Hero ─────────────────────────────────────── */
 
 .hero {
-  background: white;
+  background: var(--background);
   display: flex;
   justify-content: center;
 }
@@ -68,7 +68,7 @@
 /* ── 2. Project Info ─────────────────────────────── */
 
 .info {
-  background: #ece9e5;
+  background: var(--card-bg);
   padding: 72px 160px;
 }
 
@@ -102,7 +102,7 @@
 }
 
 .problemLeft {
-  background: var(--accent-olive);
+  background: var(--label-olive);
   padding: 80px 80px 80px 160px;
   color: var(--text);
   display: flex;
@@ -115,7 +115,7 @@
 }
 
 .goalRight {
-  background: #f9f8f7;
+  background: var(--background);
   padding: 80px 80px 80px 160px;
   color: var(--text);
   display: flex;
@@ -126,14 +126,14 @@
 .imagePlaceholder {
   width: 280px;
   height: 220px;
-  background: white;
+  background: var(--placeholder-bg);
   border-radius: 16px;
 }
 
 /* ── 4. User Research ────────────────────────────── */
 
 .research {
-  background: #ede9e3;
+  background: var(--card-bg);
   padding: 80px 160px;
   display: grid;
   grid-template-columns: 280px 1fr;
@@ -155,7 +155,7 @@
 }
 
 .painCard {
-  background: white;
+  background: var(--surface);
   border-radius: 16px;
   padding: 28px 24px;
   display: flex;
@@ -173,7 +173,7 @@
 /* ── 5. Quote ────────────────────────────────────── */
 
 .quoteSection {
-  background: var(--accent-pink);
+  background: var(--label-pink);
   padding: 72px 160px;
   display: flex;
   justify-content: center;
@@ -357,7 +357,7 @@
   border-collapse: collapse;
   min-width: 900px;
   font-size: 13px;
-  background: white;
+  background: var(--surface);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -369,9 +369,10 @@
   vertical-align: top;
   min-width: 160px;
   max-width: 200px;
-  border: 1px solid #e0ddd8;
+  border: 1px solid var(--border);
 }
 
+/* Journey map: base colors */
 .jAction {
   background: #1e1e2c;
   color: white;
@@ -417,7 +418,7 @@
 }
 
 .jEmotion {
-  background: #f9f6f2;
+  background: var(--surface);
   line-height: 1.8;
 }
 
@@ -431,6 +432,21 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+/* Journey map: dark mode overrides */
+[data-theme="dark"] .jHeader {
+  background: #5c4d00;
+}
+
+[data-theme="dark"] .jTask {
+  background: #1a3550;
+  color: var(--text);
+}
+
+[data-theme="dark"] .jOpportunity {
+  background: #5a3010;
+  color: var(--text);
 }
 
 /* ── 8. LoFi / HiFi ──────────────────────────────── */
@@ -455,12 +471,12 @@
 }
 
 .lofiHalf {
-  background: #ede9e3;
+  background: var(--card-bg);
   padding: 40px 20px 40px 160px;
 }
 
 .hifiHalf {
-  background: var(--accent-pink);
+  background: var(--label-pink);
   padding: 40px 160px 40px 20px;
   display: flex;
   justify-content: flex-end;
@@ -501,7 +517,7 @@
   height: 520px;
   border-radius: 9px;
   overflow: hidden;
-  background: white;
+  background: var(--surface);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
 }
 
@@ -537,7 +553,7 @@
 }
 
 .arrowRight:not(:disabled):hover {
-  background: #ece9e5;
+  background: var(--card-bg);
 }
 
 .arrowLeft:disabled,
@@ -598,7 +614,7 @@
 /* ── 9. Accessibility ────────────────────────────── */
 
 .accessibility {
-  background: #f9f8f7;
+  background: var(--background);
   padding: 80px 160px;
   display: grid;
   grid-template-columns: 220px 1fr;
@@ -619,7 +635,7 @@
 }
 
 .accessCard {
-  background: var(--accent-olive);
+  background: var(--label-olive);
   border-radius: 16px;
   padding: 28px 24px;
   display: flex;
@@ -776,7 +792,7 @@
   }
 
   .lofiContent {
-    background: #ede9e3;
+    background: var(--card-bg);
     flex-direction: column;
     align-items: center;
     gap: 24px;
@@ -792,7 +808,7 @@
   }
 
   .hifiContent {
-    background: var(--accent-pink);
+    background: var(--label-pink);
     flex-direction: column;
     align-items: center;
     gap: 24px;

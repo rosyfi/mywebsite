@@ -33,7 +33,37 @@ const About = () => {
   useEffect(() => {
     const container = bubblesContainer.current;
     if (!container) return;
+
     const bubbles = bubblesPhys.current;
+    const W0 = container.clientWidth;
+    const scale = Math.min(1, W0 / 800);
+
+    // Scale radii and starting positions to fit the actual container
+    INIT_BUBBLES.forEach((init, i) => {
+      bubbles[i].r  = init.r  * scale;
+      bubbles[i].x  = Math.min(Math.max(init.x * scale, bubbles[i].r), W0 - bubbles[i].r);
+      bubbles[i].y  = init.y  * scale;
+      bubbles[i].vx = init.vx * scale;
+      bubbles[i].vy = init.vy * scale;
+    });
+
+    // Apply sizes, initial positions, and scaled fonts to DOM
+    const BASE_FONT = [80, 80, 100, 80] as const;
+    bubbleEls.current.forEach((el, i) => {
+      if (!el) return;
+      const b = bubbles[i];
+      const d = Math.round(b.r * 2);
+      el.style.width  = `${d}px`;
+      el.style.height = `${d}px`;
+      el.style.left   = `${Math.round(b.x - b.r)}px`;
+      el.style.top    = `${Math.round(b.y - b.r)}px`;
+      if (scale < 1) {
+        el.style.padding = `${Math.max(6, Math.round(20 * scale))}px`;
+        const spans = el.querySelectorAll("span");
+        if (spans[0]) (spans[0] as HTMLElement).style.fontSize = `${Math.max(16, Math.round(BASE_FONT[i] * scale * 0.65))}px`;
+        if (spans[1]) (spans[1] as HTMLElement).style.fontSize = `${Math.max(9, Math.round(13 * scale))}px`;
+      }
+    });
 
     const step = () => {
       const W = container.clientWidth;
@@ -148,7 +178,6 @@ const About = () => {
               <div
                 ref={(el) => { bubbleEls.current[0] = el; }}
                 className={`${styles.statBubble} ${styles.statBubbleLarge}`}
-                style={{ left: `${INIT_BUBBLES[0].x - INIT_BUBBLES[0].r}px`, top: `${INIT_BUBBLES[0].y - INIT_BUBBLES[0].r}px` }}
               >
                 <span className={styles.statBig}>4 in 1</span>
                 <span className={styles.statLabel}>
@@ -159,7 +188,6 @@ const About = () => {
               <div
                 ref={(el) => { bubbleEls.current[1] = el; }}
                 className={`${styles.statBubble} ${styles.statBubbleTopLeft}`}
-                style={{ left: `${INIT_BUBBLES[1].x - INIT_BUBBLES[1].r}px`, top: `${INIT_BUBBLES[1].y - INIT_BUBBLES[1].r}px` }}
               >
                 <span className={styles.statNumber}>2</span>
                 <span className={styles.statLabel}>
@@ -169,7 +197,6 @@ const About = () => {
               <div
                 ref={(el) => { bubbleEls.current[2] = el; }}
                 className={`${styles.statBubble} ${styles.statBubbleBottomLeft}`}
-                style={{ left: `${INIT_BUBBLES[2].x - INIT_BUBBLES[2].r}px`, top: `${INIT_BUBBLES[2].y - INIT_BUBBLES[2].r}px` }}
               >
                 <span className={styles.statNumberLg}>∞</span>
                 <span className={styles.statLabel}>
@@ -179,7 +206,6 @@ const About = () => {
               <div
                 ref={(el) => { bubbleEls.current[3] = el; }}
                 className={`${styles.statBubble} ${styles.statBubbleBottomRight}`}
-                style={{ left: `${INIT_BUBBLES[3].x - INIT_BUBBLES[3].r}px`, top: `${INIT_BUBBLES[3].y - INIT_BUBBLES[3].r}px` }}
               >
                 <span className={styles.statNumber}>5</span>
                 <span className={styles.statLabel}>

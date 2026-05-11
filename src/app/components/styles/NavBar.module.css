@@ -1,11 +1,5 @@
-[data-theme="dark"] .hamburger .bar {
-  background: #2a2635;
-  border: 1.25px solid #d5e2e8;
-}
-
 [data-theme="dark"] .menuItems {
-  background: #1e1e24;
-  border-color: #d5e2e8;
+  border-color: var(--border);
 }
 
 .navBar {

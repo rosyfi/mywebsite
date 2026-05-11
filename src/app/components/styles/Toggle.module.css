@@ -1,39 +1,37 @@
 .toggleSwitch {
-  width: 82px;
-  height: 47px;
-  border: 1px solid black;
+  width: 58px;
+  height: 33px;
+  border: 1px solid var(--text);
   border-radius: 100px;
   display: flex;
   align-items: center;
-  padding: 6px;
+  padding: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .toggleSwitch.on {
-  background-color: #2d7490;
-  border: 1px solid white;
+  background-color: var(--section-bg);
 }
 
 .toggleSwitch.off {
-  background-color: #92cce3;
+  background-color: var(--accent-olive);
 }
 
 .toggleKnob {
-  width: 35px;
-  height: 35px;
-  border: 1px solid black;
+  width: 25px;
+  height: 25px;
+  border: 1px solid var(--text);
   border-radius: 50%;
   transition: transform 0.3s ease;
 }
 
 .toggleKnob.off {
-  background-color: white;
+  background-color: var(--background);
 }
 
 .toggleKnob.on {
-  background-color: #274856;
-  border: 1px solid white;
+  background-color: var(--accent-pink);
 }
 
 .toggleSwitch.off .toggleKnob {
@@ -41,5 +39,5 @@
 }
 
 .toggleSwitch.on .toggleKnob {
-  transform: translateX(33px);
+  transform: translateX(25px);
 }

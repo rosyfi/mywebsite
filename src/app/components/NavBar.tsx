@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import styles from "./styles/NavBar.module.css";
 import useIsMobile from "./useIsMobile";
+import Toggle from "./Toggle";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -92,6 +93,9 @@ const NavBar = () => {
           >
             linkedIn
           </Link>
+        </li>
+        <li>
+          <Toggle />
         </li>
       </ul>
     </nav>

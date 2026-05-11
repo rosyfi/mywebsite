@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 
@@ -9,19 +12,13 @@ interface ThemedImageProp {
 
 const ThemedImage: React.FC<ThemedImageProp> = ({ name, width, height }) => {
   const { resolvedTheme } = useTheme();
-  let src;
+  const [mounted, setMounted] = useState(false);
 
-  switch (resolvedTheme) {
-    case "light":
-      src = "/light/" + `${name}.svg`;
-      break;
-    case "dark":
-      src = "/dark/" + `${name}.svg`;
-      break;
-    default:
-      src = "/light/" + `${name}.svg`;
-      break;
-  }
+  useEffect(() => { setMounted(true); }, []);
+
+  const src = mounted && resolvedTheme === "dark"
+    ? `/dark/${name}.svg`
+    : `/light/${name}.svg`;
 
   return (
     <Image
