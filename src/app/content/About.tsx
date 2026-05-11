@@ -1,9 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./styles/About.module.css";
+
+interface PhysBubble { r: number; x: number; y: number; vx: number; vy: number; }
+
+const INIT_BUBBLES: PhysBubble[] = [
+  { r: 155,   x: 510,   y: 160,   vx: 1.0,  vy: 0.7  },
+  { r: 92.5,  x: 192.5, y: 142.5, vx: -0.7, vy: 0.9  },
+  { r: 112.5, x: 312.5, y: 367.5, vx: 0.8,  vy: -1.0 },
+  { r: 100,   x: 680,   y: 395,   vx: -0.9, vy: -0.6 },
+];
 
 const About = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +24,72 @@ const About = () => {
   const [status, setStatus] = useState<
     "idle" | "sending" | "success" | "error"
   >("idle");
+
+  const bubblesPhys = useRef<PhysBubble[]>(INIT_BUBBLES.map(b => ({ ...b })));
+  const bubbleEls = useRef<(HTMLDivElement | null)[]>([null, null, null, null]);
+  const bubblesContainer = useRef<HTMLDivElement>(null);
+  const rafId = useRef<number>(0);
+
+  useEffect(() => {
+    const container = bubblesContainer.current;
+    if (!container) return;
+    const bubbles = bubblesPhys.current;
+
+    const step = () => {
+      const W = container.clientWidth;
+      const H = container.clientHeight;
+
+      for (const b of bubbles) {
+        b.x += b.vx;
+        b.y += b.vy;
+        if (b.x - b.r < 0)  { b.x = b.r;     b.vx =  Math.abs(b.vx); }
+        if (b.x + b.r > W)  { b.x = W - b.r; b.vx = -Math.abs(b.vx); }
+        if (b.y - b.r < 0)  { b.y = b.r;     b.vy =  Math.abs(b.vy); }
+        if (b.y + b.r > H)  { b.y = H - b.r; b.vy = -Math.abs(b.vy); }
+      }
+
+      for (let i = 0; i < bubbles.length; i++) {
+        for (let j = i + 1; j < bubbles.length; j++) {
+          const a = bubbles[i], b = bubbles[j];
+          const dx = b.x - a.x, dy = b.y - a.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const minDist = a.r + b.r;
+          if (dist < minDist && dist > 0.01) {
+            const nx = dx / dist, ny = dy / dist;
+            const overlap = (minDist - dist) / 2;
+            a.x -= nx * overlap;
+            a.y -= ny * overlap;
+            b.x += nx * overlap;
+            b.y += ny * overlap;
+            const ma = a.r * a.r, mb = b.r * b.r;
+            const dvx = a.vx - b.vx, dvy = a.vy - b.vy;
+            const dot = dvx * nx + dvy * ny;
+            if (dot > 0) {
+              const factor = 2 * dot / (ma + mb);
+              a.vx -= factor * mb * nx;
+              a.vy -= factor * mb * ny;
+              b.vx += factor * ma * nx;
+              b.vy += factor * ma * ny;
+            }
+          }
+        }
+      }
+
+      for (let i = 0; i < bubbles.length; i++) {
+        const el = bubbleEls.current[i];
+        const b = bubbles[i];
+        if (el) {
+          el.style.left = `${b.x - b.r}px`;
+          el.style.top  = `${b.y - b.r}px`;
+        }
+      }
+
+      rafId.current = requestAnimationFrame(step);
+    };
+
+    rafId.current = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(rafId.current);
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -69,8 +144,12 @@ const About = () => {
             <div className={styles.lineSegment} />
           </div>
           <div className={styles.statsContent}>
-            <div className={styles.statsBubbles}>
-              <div className={`${styles.statBubble} ${styles.statBubbleLarge}`}>
+            <div className={styles.statsBubbles} ref={bubblesContainer}>
+              <div
+                ref={(el) => { bubbleEls.current[0] = el; }}
+                className={`${styles.statBubble} ${styles.statBubbleLarge}`}
+                style={{ left: `${INIT_BUBBLES[0].x - INIT_BUBBLES[0].r}px`, top: `${INIT_BUBBLES[0].y - INIT_BUBBLES[0].r}px` }}
+              >
                 <span className={styles.statBig}>4 in 1</span>
                 <span className={styles.statLabel}>
                   Expertise in{" "}
@@ -78,7 +157,9 @@ const About = () => {
                 </span>
               </div>
               <div
+                ref={(el) => { bubbleEls.current[1] = el; }}
                 className={`${styles.statBubble} ${styles.statBubbleTopLeft}`}
+                style={{ left: `${INIT_BUBBLES[1].x - INIT_BUBBLES[1].r}px`, top: `${INIT_BUBBLES[1].y - INIT_BUBBLES[1].r}px` }}
               >
                 <span className={styles.statNumber}>2</span>
                 <span className={styles.statLabel}>
@@ -86,15 +167,19 @@ const About = () => {
                 </span>
               </div>
               <div
+                ref={(el) => { bubbleEls.current[2] = el; }}
                 className={`${styles.statBubble} ${styles.statBubbleBottomLeft}`}
+                style={{ left: `${INIT_BUBBLES[2].x - INIT_BUBBLES[2].r}px`, top: `${INIT_BUBBLES[2].y - INIT_BUBBLES[2].r}px` }}
               >
-                <span className={styles.statNumberLg}>6</span>
+                <span className={styles.statNumberLg}>∞</span>
                 <span className={styles.statLabel}>
                   AI Skills used with Claude
                 </span>
               </div>
               <div
+                ref={(el) => { bubbleEls.current[3] = el; }}
                 className={`${styles.statBubble} ${styles.statBubbleBottomRight}`}
+                style={{ left: `${INIT_BUBBLES[3].x - INIT_BUBBLES[3].r}px`, top: `${INIT_BUBBLES[3].y - INIT_BUBBLES[3].r}px` }}
               >
                 <span className={styles.statNumber}>5</span>
                 <span className={styles.statLabel}>
