@@ -178,7 +178,7 @@ const About = () => {
           </div>
           <div className={styles.timelineCell}>
             <div className={styles.lineSegmentBridge} />
-            <div className={`${styles.iconCircle} ${styles.iconBgGray}`}>
+            <div className={`${styles.iconCircle} ${styles.iconBgGray} ${styles.iconStatic}`}>
               <i className="bi bi-chat-text" />
             </div>
             <div className={styles.lineSegment} />
